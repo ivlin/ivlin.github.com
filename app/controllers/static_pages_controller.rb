@@ -1,7 +1,16 @@
 class StaticPagesController < ApplicationController
+  def home
+  end
 
-	def index
+  def education
+  end
 
-	end
+  def experience
+  end
 
+  def misc
+  end
+
+  def resume
+  end
 end
