@@ -1,5 +1,5 @@
 current directory: /home/minivan/Documents/classes/personal_site/vendor/bundle/ruby/2.3.0/gems/sqlite3-1.3.13/ext/sqlite3
-/usr/bin/ruby2.3 -r ./siteconf20170905-7782-1vlb2np.rb extconf.rb
+/usr/bin/ruby2.3 -r ./siteconf20170905-23765-8h19tl.rb extconf.rb
 checking for sqlite3.h... yes
 checking for pthread_create() in -lpthread... yes
 checking for sqlite3_libversion_number() in -lsqlite3... yes
@@ -30,4 +30,4 @@ linking shared-object sqlite3/sqlite3_native.so
 
 current directory: /home/minivan/Documents/classes/personal_site/vendor/bundle/ruby/2.3.0/gems/sqlite3-1.3.13/ext/sqlite3
 make "DESTDIR=" install
-/usr/bin/install -c -m 0755 sqlite3_native.so ./.gem.20170905-7782-1kne98r/sqlite3
+/usr/bin/install -c -m 0755 sqlite3_native.so ./.gem.20170905-23765-1bwedty/sqlite3
