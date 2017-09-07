@@ -1,9 +1,10 @@
 <section class="section">
+  <div class="row" style="text-align:center"><img src="self.jpg" style="max-height:100px; height:10%; margin-left: auto; margin-right: auto"></div>
   <div class="row" style="">
     <div class="col-md-2"></div>
     <div class="col-md-8">
-      <p>Hello, world. I'm an undergraduate student studying computer science and applied mathematics at Stony Brook University. While my academic interests are mainly science, mathematics, and engineering, I also enjoy creative writing and history.</p> 
-      <p>While I have aspirations to work in the tech industry, I have (somehow) ended up with a lot of experience guiding and tutoring others. A mentor of mine who volunteered his time after his regular job once gave me the piece told me when I thanked him for his time to "<em>pay it forward</em>" so those words have stuck with me.</p>
+      <p>Hello, world! I'm an undergraduate student studying computer science and applied mathematics at Stony Brook University. While my academic interests are mainly science, mathematics, and engineering, I also enjoy creative writing and history.</p> 
+      <p>While I have aspirations to work in the tech industry, I have (somehow) ended up with a lot of experience guiding and tutoring others. I attribute this to something a mentor of mine once told me that I suppose I've taken to heart. He volunteered his time after his regular job to help out at my owrkplace, and on my thanking him, his only words to me were to <em>pay it forward</em>. So I have and I will continue to do so.</p>
     </div>
     <div class="col-md-2"></div>
   </div>
@@ -14,7 +15,7 @@
       <h1 class="text-center big light panel-group-header">
         Synopsis
       </h1>
-      <div class="list-container row">
+      <div class="list-container row" style="height:fit-content">
         <div class="col-md-4 text-center synopsis-item" style="height:fit-content">
           <span class="service-simple-image">
             <img alt="contact" src="png/user-shape.png" style="max-height: 10%">
@@ -28,6 +29,12 @@
             </tr>
             <tr>
               <td valign="top"><strong>Home</strong></td><td style="width:1em"></td><td>1675 68th St.<br>Brooklyn, NY 11204</td>
+            </tr>
+            <tr>
+              <td><strong>Email</strong></td><td style="width:1em"></td><td>ivan.lin@stonybrook.edu</td>
+            </tr>
+            <tr>
+              <td><strong>Phone</strong></td><td style="width:1em"></td><td>(###) ###-#### </td>
             </tr>
             <tr>
               <td><strong>Location</strong></td><td style="width:1em"></td><td>Stony Brook, NY</td>
@@ -58,7 +65,8 @@
             Experience
           </h2>
           <div style="text-align:left">
-          <p><strong>Full Stack Developer Intern</strong> at Sweetist Co<br><em>June 2017 - Aug 2017</em><br></p>
+          <strong>Full Stack Developer Intern</strong> at Sweetist Co<br><em>June 2017 - Aug 2017</em>
+          <br>
           <strong>Mentor</strong> at NFTE<br><em>July 2016 - Aug 2016</em><br>
           <a href="experience" style="bottom: 0; font-size:12px; color: #444">See more...</a>
           </div>
@@ -67,39 +75,7 @@
     </div>
   </div>
 
-  <div style="height:30px"></div>
-  <h2 style="text-align:center" class="panel-group-header">Contact</h2>
-  <div class="row">
-  <div class="col-md-1 col-sm-0"></div>
-  <div class="col-md-1 col-sm-3" style="text-align:center">
-    <a href="resume">
-      <img src="png/text-file.png" style="min-width:64px; max-width:50%">
-    </a>
-  </div>
-  <div class="col-md-1 col-sm-0"></div>
-
-  <div class="col-md-1 col-sm-0"></div>
-  <div class="col-md-1 col-sm-3" style="text-align:center">
-    <a href="mailto:ivan.lin@stonybrook.edu">
-      <img src="png/envelope-of-white-paper.png" style="min-width:64px; max-width:50%;">
-    </a>
-  </div>
-  <div class="col-md-1 col-sm-0"></div>
-  
-  <div class="col-md-1 col-sm-0"></div>
-  <div class="col-md-1 col-sm-3" style="text-align:center">
-  <a href="http://www.github.com/ivlin">
-      <img src="png/github-logo.png" style="min-width:64px; max-width:50%;">
-    </a>
-  </div>
-  <div class="col-md-1 col-sm-0"></div>
-
-  <div class="col-md-1 col-sm-0"></div>
-  <div class="col-md-1 col-sm-3" style="text-align:center">
-    <a href="https://www.linkedin.com/in/ivan-lin-702752139/">
-      <img src="png/linkedin-sign.png" style="min-width:64px; max-width:50%;">
-    </a>
-  </div>
-  <div class="col-md-1 col-sm-0"></div>
-  </div>
+  <div style="height:0px"></div>
+  <h2 style="text-align:center" class="panel-group-header">Quick Links</h2>
+  <%= render 'static_pages/quick_links' %>
 </section>
