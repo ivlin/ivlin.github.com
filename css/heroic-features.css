@@ -1,0 +1,57 @@
+/*!
+ * Start Bootstrap - Heroic Features (https://startbootstrap.com/template-overviews/heroic-features)
+ * Copyright 2013-2017 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-heroic-features/blob/master/LICENSE)
+ */
+
+body {
+  padding-top: 54px;
+}
+
+@media (min-width: 992px) {
+  body {
+    padding-top: 56px;
+  }
+}
+
+.thin-footer {
+    padding-top:1.5rem !important;
+    padding-bottom:1.5rem !important;
+}
+
+/*
+    INDEX PAGE
+*/
+
+.card {
+  height: 100%;
+}
+.card-footer{
+  text-decoration: none;
+  color: black;
+}
+.bottom-nav {
+    color:white;
+    width:100%;
+    display: flex;
+    justify-content: space-around;
+}
+.bottom-nav div {
+    text-align: center;
+    font-family: 'Courier New', 'sans-serif'
+}
+.bottom-nav a{
+  text-decoration: none;
+  color:white;
+}
+
+/*
+    EDUCATION PAGE
+*/
+.bg-image-full {
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
