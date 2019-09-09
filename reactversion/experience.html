@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Ivan Lin</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/heroic-features.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">Ivan Lin</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="./index.html">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./education.html">Education</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="./experience.html">Experience</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+      <!-- Portfolio Item Heading -->
+      <h1 class="my-4">Experience
+        <small></small>
+      </h1>
+
+      <!-- Portfolio Item Row -->
+      <div class="row">
+        <div class="col-md-4">
+           <center>
+           <i data-feather="briefcase"></i>
+         </center>
+        </div>
+        <div class="col-md-8">
+          For more explicit work and volunteer experience, see my resume <a href="./resume.html">here</a>.
+        </div>
+      </div>
+      <!-- /.row -->
+
+      <!-- Related Projects Row -->
+      <h3 class="my-4">Coding Projects</h3>
+
+      <!-- Content Row -->
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h3 class="card-title">DirectWriter</h2>
+              <p class="card-text">This project writes out the structure of a directory as text in your terminal. You can then edit the text in-terminal and any changes made through the editor will be applied to the actual file names, so all renaming can be done in one place.<br>
+              Done in C.
+              </p>
+            </div>
+            <a href="github.com/ivlin/directwriter">
+            <div class="card-footer">
+               View Source
+            </div>
+            </a>
+          </div>
+        </div>
+        <!-- /.col-md-4 -->
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h3 class="card-title">GraphIt</h2>
+              <p class="card-text">
+                GraphIt is an interactive graphing utility developed in Java. The user can click on the graph and its nodes to add, remove, or move points. There are toggle switches to show the mean, standard deviation, regression line, and other statistical measures about the dataset. There are also options to textually modify the data points so that changes will be reflected in the graph. Batch modifications can be made by applying functions to all the points in the set.
+                <br>
+                The user can also import their own data from a csv file or output the current dataset to a new csv.
+                <br>
+                Done in Java and JavaFX.
+              </p>
+            </div>
+            <a href="github.com/ivlin/graphit">
+            <div class="card-footer">
+              View Source
+            </div>
+            </a>
+          </div>
+        </div>
+        <!-- /.col-md-4 -->
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h3 class="card-title">CREAM Server</h2>
+              <p class="card-text">This is a server implemented in C that essentially acts as a cache that stores key-value pairs. The server uses multiple threads for better performance. A queue stores all the jobs for that needs to be performed by the threads and the information is stored on a hashmap. The map uses an open addressing system to deal with collisions and a very simple hash algorithm.
+              <br>
+              Done in C.
+            </p>
+            </div>
+            <a href="github.com/ivlin/cream_server">
+            <div class="card-footer">
+              View Source
+            </div>
+            </a>
+          </div>
+        </div>
+        <!-- /.col-md-4 -->
+      </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark thin-footer">
+      <div class="container">
+        <div class="bottom-nav">
+            <div>
+                <a href="mailto:ivlin112@gmail.com">
+                <center><i data-feather="mail"></i></center>
+                mail
+                </a>
+            </div>
+            <div>
+                <a href="resume.html">
+                <center><i data-feather="file-text"></i></center>
+                resume
+                </a>
+            </div>
+            <div>
+                <a href="https://github.com/ivlin/">
+                <center><i data-feather="github"></i></center>
+                github
+                </a>
+            </div>
+            <div>
+                <a href="https://linkedin.com/in/ivan-lin-702752139/">
+                <center><i data-feather="linkedin"></i></center>
+                linkedin
+                </a>
+            </div>
+        </div>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script>
+      feather.replace({width:50, height:50, color:'white'});
+      var icons=[]
+      icons.push(document.getElementsByClassName("feather-briefcase")[0]);
+      icons.forEach(function(el){
+        console.log(el);
+        el.setAttribute("width",50);
+        el.setAttribute("height",50);
+        el.setAttribute("color","black");
+      });
+    </script>
+  </body>
+</html>
