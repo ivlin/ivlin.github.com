@@ -15,8 +15,8 @@ body {
 }
 
 .thin-footer {
-    padding-top:1.5rem !important;
-    padding-bottom:1.5rem !important;
+    padding-top:1rem !important;
+    padding-bottom:1rem !important;
 }
 
 /*
@@ -54,4 +54,8 @@ body {
   -moz-background-size: cover;
   background-size: cover;
   -o-background-size: cover;
+}
+
+.navbar-icon {
+  font-size:0.75rem;
 }

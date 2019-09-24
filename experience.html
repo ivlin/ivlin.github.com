@@ -141,7 +141,7 @@
             <div class="card-body">
               <h3 class="card-title">FrameFinder</h2>
               <p class="card-text">
-                FrameFinder is meant to automatically look through videos for a specific moment for people. If you have hours of uncut video and you are trying to recall a specific moment, draw it out as best you can and use FrameFinder to look for you while you do something else.
+                FrameFinder is meant to automatically look through videos for a specific moment. If you have hours of uncut video and you are trying to recall a specific moment, draw it out as best you can and use FrameFinder to look for you while you do something else.
                 <br>
                 Done with HTML, CSS, Javascript, and Python's Flask.
               </p>
@@ -167,25 +167,25 @@
       <div class="container">
         <div class="bottom-nav">
             <div>
-                <a href="mailto:ivlin112@gmail.com">
+                <a href="mailto:ivlin112@gmail.com" class="navbar-icon">
                 <center><i data-feather="mail"></i></center>
                 mail
                 </a>
             </div>
             <div>
-                <a href="resume.html">
+                <a href="resume.html" class="navbar-icon">
                 <center><i data-feather="file-text"></i></center>
                 resume
                 </a>
             </div>
             <div>
-                <a href="https://github.com/ivlin/">
+                <a href="https://github.com/ivlin/" class="navbar-icon">
                 <center><i data-feather="github"></i></center>
                 github
                 </a>
             </div>
             <div>
-                <a href="https://linkedin.com/in/ivan-lin-702752139/">
+                <a href="https://linkedin.com/in/ivan-lin-702752139/" class="navbar-icon">
                 <center><i data-feather="linkedin"></i></center>
                 linkedin
                 </a>
@@ -201,16 +201,6 @@
     <!-- Feather Icons -->
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    <script>
-      feather.replace({width:50, height:50, color:'white'});
-      var icons=[]
-      icons.push(document.getElementsByClassName("feather-briefcase")[0]);
-      icons.forEach(function(el){
-        console.log(el);
-        el.setAttribute("width",50);
-        el.setAttribute("height",50);
-        el.setAttribute("color","black");
-      });
-    </script>
+    <script src="scripts/navbar.js"></script>
   </body>
 </html>

@@ -144,25 +144,25 @@
       <div class="container">
         <div class="bottom-nav">
             <div>
-                <a href="mailto:ivlin112@gmail.com">
+                <a href="mailto:ivlin112@gmail.com" class="navbar-icon">
                 <center><i data-feather="mail"></i></center>
                 mail
                 </a>
             </div>
             <div>
-                <a href="resume.html">
+                <a href="resume.html" class="navbar-icon">
                 <center><i data-feather="file-text"></i></center>
                 resume
                 </a>
             </div>
             <div>
-                <a href="https://github.com/ivlin/">
+                <a href="https://github.com/ivlin/" class="navbar-icon">
                 <center><i data-feather="github"></i></center>
                 github
                 </a>
             </div>
             <div>
-                <a href="https://linkedin.com/in/ivan-lin-702752139/">
+                <a href="https://linkedin.com/in/ivan-lin-702752139/" class="navbar-icon">
                 <center><i data-feather="linkedin"></i></center>
                 linkedin
                 </a>
@@ -178,20 +178,7 @@
     <!-- Feather Icons -->
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    <script>
-        feather.replace({width:50, height:50, color:'white'});
-        var icons=[]
-        icons.push(document.getElementsByClassName("feather-user")[0]);
-        icons.push(document.getElementsByClassName("feather-book-open")[0]);
-        icons.push(document.getElementsByClassName("feather-briefcase")[0]);
-        console.log(icons);
-        icons.forEach(function(el){
-            console.log(el);
-            el.setAttribute("width",150);
-            el.setAttribute("height",150);
-            el.setAttribute("color","black");
-        });
-    </script>
+    <script src="scripts/navbar.js"></script>
     <!-- Load React. -->
     <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
     <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
