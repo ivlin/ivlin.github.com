@@ -53,15 +53,14 @@
         <small></small>
       </h1>
 
-      <!-- Portfolio Item Row -->
-      <div class="row">
-        <div class="col-md-4">
-           <center>
-           <i data-feather="briefcase"></i>
-         </center>
-        </div>
-        <div class="col-md-8">
-          For more explicit work and volunteer experience, see my resume <a href="./resume.html">here</a>.
+      <div class="card mb-3">
+        <a href="resume.pdf">
+        <img src="public/resume_head.png" class="card-img-top" alt="...">
+        </a>
+        <div class="card-body">
+          <a href="resume.pdf" style="text-decoration: none; color:black;">
+            <h5 class="card-title">View my resume</h5>
+          </a>
         </div>
       </div>
       <!-- /.row -->
@@ -69,26 +68,34 @@
       <!-- Related Projects Row -->
       <h3 class="my-4">Coding Projects</h3>
 
-      <!-- Content Row -->
       <div class="row">
-        <div class="col-md-4 mb-4">
+        <!-- /.col-md-4 -->
+        <div class="col-md-6 mb-4">
           <div class="card h-100">
+            <img src="public/mealz.png" style="width:100%; height:auto"/>
             <div class="card-body">
-              <h3 class="card-title">DirectWriter</h2>
-              <p class="card-text">This project writes out the structure of a directory as text in your terminal. You can then edit the text in-terminal and any changes made through the editor will be applied to the actual file names, so all renaming can be done in one place.<br>
-              Done in C.
-              </p>
+              <h3 class="card-title">Mealz</h2>
+              <p class="card-text">This website is aimed to give friends a way to track how they are splitting bills. Rather than constantly having money trade hands, many small transactions can be tracked and split between participants.
+              <br>
+              Done with HTML, CSS, Javascript, and Python's Flask framework.
+            </p>
             </div>
-            <a href="github.com/ivlin/directwriter">
+            <a href="https://mealz-tm.herokuapp.com">
             <div class="card-footer">
-               View Source
+              Go
+            </div>
+            </a>
+            <a href="https://github.com/ivlin/mealztm">
+            <div class="card-footer">
+              Source
             </div>
             </a>
           </div>
         </div>
         <!-- /.col-md-4 -->
-        <div class="col-md-4 mb-4">
+        <div class="col-md-6 mb-4">
           <div class="card h-100">
+            <img src="public/graphit.png" style="width:100%; height:auto"/>
             <div class="card-body">
               <h3 class="card-title">GraphIt</h2>
               <p class="card-text">
@@ -99,26 +106,9 @@
                 Done in Java and JavaFX.
               </p>
             </div>
-            <a href="github.com/ivlin/graphit">
+            <a href="https://github.com/ivlin/graphit">
             <div class="card-footer">
-              View Source
-            </div>
-            </a>
-          </div>
-        </div>
-        <!-- /.col-md-4 -->
-        <div class="col-md-4 mb-4">
-          <div class="card h-100">
-            <div class="card-body">
-              <h3 class="card-title">CREAM Server</h2>
-              <p class="card-text">This is a server implemented in C that essentially acts as a cache that stores key-value pairs. The server uses multiple threads for better performance. A queue stores all the jobs for that needs to be performed by the threads and the information is stored on a hashmap. The map uses an open addressing system to deal with collisions and a very simple hash algorithm.
-              <br>
-              Done in C.
-            </p>
-            </div>
-            <a href="github.com/ivlin/cream_server">
-            <div class="card-footer">
-              View Source
+              Source
             </div>
             </a>
           </div>
@@ -126,7 +116,49 @@
         <!-- /.col-md-4 -->
       </div>
       <!-- /.row -->
-
+      <div class="row">
+        <!-- /.col-md-4 -->
+        <div class="col-md-6 mb-4">
+          <div class="card h-100">
+            <img src="public/directwriter.png" style="width:100%; height:auto"/>
+            <div class="card-body">
+              <h3 class="card-title">DirectWriter</h2>
+              <p class="card-text">This project writes out the structure of a directory as text in your terminal. You can then edit the text in-terminal and any changes made through the editor will be applied to the actual file names, so all renaming can be done in one place.<br>
+              Done in C.
+              </p>
+            </div>
+            <a href="https://github.com/ivlin/directwriter">
+            <div class="card-footer">
+               Source
+            </div>
+            </a>
+          </div>
+        </div>
+        <!-- /.col-md-4 -->
+        <div class="col-md-6 mb-4">
+          <div class="card h-100">
+            <img src="public/framefinder.png" style="width:100%; height:auto"/>
+            <div class="card-body">
+              <h3 class="card-title">FrameFinder</h2>
+              <p class="card-text">
+                FrameFinder is meant to automatically look through videos for a specific moment for people. If you have hours of uncut video and you are trying to recall a specific moment, draw it out as best you can and use FrameFinder to look for you while you do something else.
+                <br>
+                Done with HTML, CSS, Javascript, and Python's Flask.
+              </p>
+            </div>
+            <a href="https://framefinder.herokuapp.com">
+            <div class="card-footer">
+              Go
+            </div>
+            </a>
+            <a href="https://github.com/ivlin/framefinder">
+            <div class="card-footer">
+              Source
+            </div>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- /.container -->
 
