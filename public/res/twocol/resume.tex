@@ -1,0 +1,235 @@
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This is a modified ONE COLUMN version of
+% the following template:
+%
+% Deedy - One Page Two Column Resume
+% LaTeX Template
+% Version 1.1 (30/4/2014)
+%
+% Original author:
+% Debarghya Das (http://debarghyadas.com)
+%
+% Original repository:
+% https://github.com/deedydas/Deedy-Resume
+%
+% IMPORTANT: THIS TEMPLATE NEEDS TO BE COMPILED WITH XeLaTeX
+%
+% This template uses several fonts not included with Windows/Linux by
+% default. If you get compilation errors saying a font is missing, find the line
+% on which the font is used and either change it to a font included with your
+% operating system or comment the line out to use the default font.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% TODO:
+% 1. Integrate biber/bibtex for article citation under publications.
+% 2. Figure out a smoother way for the document to flow onto the next page.
+% 3. Add styling information for a "Projects/Hacks" section.
+% 4. Add location/address information
+% 5. Merge OpenFont and MacFonts as a single sty with options.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% CHANGELOG:
+% v1.1:
+% 1. Fixed several compilation bugs with \renewcommand
+% 2. Got Open-source fonts (Windows/Linux support)
+% 3. Added Last Updated
+% 4. Move Title styling into .sty
+% 5. Commented .sty file.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Known Issues:
+% 1. Overflows onto second page if any column's contents are more than the
+% vertical limit
+% 2. Hacky space on the first bullet point on the second column.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \documentclass[]{deedy-resume-openfont}
+
+    \begin{document}
+
+\iffalse
+Space Standardization:
+resumesection -> runsubsection
+runsubsection -> addmargin -> descript
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%     Profile
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\namesection{}{Ivan Lin}{ivlin112@gmail.com | (917) 680 - 2208 | github.com/ivlin | ivlin.github.io}{1675 68th St, Brooklyn NY 11204}
+
+\sectionsep
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%     Education
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{resumesection}{Education}
+\runsubsection{Stony Brook University}\descript{}\hfill \location{Stony Brook, New York}
+\begin{addmargin}[1em]{0pt}
+\descript{MS Computer Science}\hfill \location{ May 2021}\\
+\descript{BS Computer Science, Applied Mathematics and Statistics} {$\cdot$ GPA: 3.87} \hfill \location{ May 2020}
+\end{addmargin}
+\iffalse
+\runsubsection{Pohang University of Science and Technology (Study Abroad)}\descript{}\hfill \location{Pohang, South Korea | Spring 2019}\\
+\sectionsep
+\vspace{-5pt}
+\fi
+\sectionsep
+\vspace{-5pt}
+\runsubsection{Stuyvesant High School} {$\cdot$ GPA: 94.68}\hfill  \location{New York, New York | May 2016}\\
+\vspace{-2pt}
+\end{resumesection}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%     Experience
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{resumesection}{Experience}
+\runsubsection{Sweetist Co}\location{ | New York, NY}\newline
+\descript{Full Stack Software Developer Intern}\hfill\location{June 2017 – August 2017}
+\vspace{-5pt}
+\begin{tightemize}
+	\item Created a system for querying, comparing, and displaying large blocks of shipment data
+	\item Collaborated with the marketing team to enact website design changes in HTML and CSS
+	\item Wrote unit tests, fixed bugs, and implemented features using Javascript and Ruby on Rails
+    \item Developed a delivery tracking application that communicated with the online store
+\end{tightemize}
+\vspace{-2pt}
+\runsubsection{Network for Teaching Entrepreneurship}\location{ | New York, NY}\newline
+\descript{Engineering Mentor (July 2016 - August 2016) $\cdot$ Software Engineer (July 2015 - August 2015)}
+\vspace{-5pt}
+\begin{tightemize}
+	\item Lead development of a mobile Android application using HTML, CSS, and Javascript with Apache Cordova
+\end{tightemize}
+
+\vspace{-8pt}
+\end{resumesection}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%     Activities
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{resumesection}{Activities}
+\runsubsection{Stony Brook University}\location{ | Stony Brook, NY}\newline
+\descript{Student Researcher}\hfill\location{May 2018 – August 2018, July 2019 - Present}
+\vspace{-5pt}
+\begin{tightemize}
+    \item Modified Firefox's DNS-over-HTTPS and DNS-over-TLS to distribute lookup load between multiple resolvers
+    \item Developed the presentation and presented the research at conference
+    \item Hoang, P. H., \& \descript{Lin I.} \& Ghavamnia S., \& Polychronakis, M., 2020, 'K-resolver: Towards Decentralizing Encrypted DNS Resolution', Paper presented at NDSS MADWeb, San Diego
+    \iffalse
+    \item Tested and compared the results of semisupervised generative adversarial networks to traditional GANs and discriminator convolutional neural nets
+    \fi
+\end{tightemize}
+\vspace{-2pt}
+\descript{Teaching Assistant: Computer Networks}\hfill\location{August 2018 – December 2018}\\
+\vspace{2pt}
+\iffalse
+\descript{Teaching Assistant: Introduction to Stony Brook}\hfill\location{July 2017 - December 2017}
+\sectionsep
+\vspace{-5pt}\\
+\fi
+\runsubsection{\large{Stony Brook Solar Racing Team}}\location{ | Stony Brook, NY}\newline
+\iffalse
+\descript{Vice President}\hfill\location{September 2018 - Present}
+\vspace{-5pt}
+\begin{tightemize}
+    \item Scheduled meetings, met with advisors and funding sources, and supervised general body members
+\end{tightemize}
+\fi
+\descript{Vice President (2018 - Present) $\cdot$ Datalogging Lead (2017 - 2020) $\cdot$ Secretary (2017 - 2018)}
+\vspace{-5pt}
+\begin{tightemize}
+    \item Developed a telemetry system that consolidated onboard sensor information to a Raspberry Pi
+    \item Oversaw the development of a web application to display the data on the boat's dashboard
+\end{tightemize}
+
+\vspace{-4pt}
+\end{resumesection}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	Projects
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{resumesection}{Projects}
+
+\runsubsection{\large{DirectWriter}}
+\descript{| C}\hfill \location{github.com/ivlin/DirectWriter}\\
+\begin{addmargin}[1em]{0pt}
+Allows for quick renaming of a large amount of files. Displays a directory as editable text in-terminal so that changes to filenames will be reflected in the real directory structure.\\
+\end{addmargin}
+\vspace{4pt}
+
+\iffalse
+\runsubsection{\large{GraphIt}}
+\descript{| Java}\hfill \location{github.com/ivlin/GraphIt}\\
+\begin{addmargin}[1em]{0pt}
+An interactive graphing utility that allows a user to click on a graph and its nodes to add, remove, or move points. The graph respond by graphically visualizing statistical measures about the dataset.\\
+\end{addmargin}
+\vspace{4pt}
+\fi
+
+\runsubsection{\large{LangAnnotator}}
+\descript{| Web, Javascript, React.js}\hfill \location{ivlin.github.io/LangAnnotator}\\
+\begin{addmargin}[1em]{0pt}
+Tool for writing and annotating notes, aimed at those learning a foreign language.\\
+\end{addmargin}
+\vspace{4pt}
+
+\runsubsection{\large{MealzTM}}
+\descript{| Web, Javascript, Python, Postgres}\hfill \location{mealz-tm.herokuapp.com}\\
+\begin{addmargin}[1em]{0pt}
+Website for groups of people to track payments and divide bills between themselves.\\
+\end{addmargin}
+\vspace{4pt}
+
+\runsubsection{\large{FrameFinder}}
+\descript{| Web, Javascript, Python}\hfill \location{framefinder.herokuapp.com}\\
+\begin{addmargin}[1em]{0pt}
+Find a specific frame in a Youtube video by drawing it. Post a picture a drawing of a scene and FrameFinder will go through a Youtube video looking for similar looking frames.
+\end{addmargin}
+\vspace{-3pt}
+\end{resumesection}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%     Skills
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{resumesection}{Skills and Coursework}
+\descript{Proficient with: } HTML, CSS, Java, JavaScript, C, Ruby on Rails, Python, PostgreSQL\\
+\sectionsep
+\vspace{-5pt}
+\descript{Prior experience with: } Tensorflow, MongoDB, NodeJS, ReactJS, OCaml, C++\\
+\sectionsep
+\vspace{-5pt}
+\descript{Coursework:} Graphics, Algorithms, Networks, Programming Languages, Machine Learning, Operating Systems, Security, Computational Geometry, Theory  of Computation, Software Development, Systems Security
+\end{resumesection}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%     Cousework
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\iffalse
+\tightsection{Cousework}
+\begin{addmargin}[1em]{0pt}
+\begin{tabular}{ l l }
+\descript{Completed} & Software Development, Computer Security, Systems Fundamentals, Computer Graphics,
+\\*
+\descript{} & Computational Geometry, Technical Writing
+\vspace{2pt}
+\\
+\descript{In Progress} & {Machine Learning, Computer Networks}
+\end{tabular}
+\end{addmargin}
+\fi
+\end{document}
