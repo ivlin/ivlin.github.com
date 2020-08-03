@@ -1,192 +1,316 @@
 <!DOCTYPE html>
 <html lang="en">
+<title>Ivan Lin</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+body {font-size:16px;}
+.w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
+.w3-half img:hover{opacity:1}
 
-  <head>
+.sidebar-with-icon{font-size:2rem; line-height:0.8; width:100%; text-align:right; display:block;}
+.sidebar-with-icon i{line-height: 0;}
+#projects{}
+#projects .w3-container{margin:1rem;}
+.course-ongoing{font-style: italic}
+.course-graduate{font-weight: bold}
+</style>
+<body>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-blue-grey w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
+  <div class="w3-container">
+    <h3 class="w3-padding-64"><b>Ivan Lin</b></h3>
+  </div>
+  <div class="w3-bar-block">
+    <hr>
+    <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">
+      <span style="float:left;">Home</span>
+      <span class="sidebar-with-icon"><i class="fa fa-home fa-fw"></i></span>
+    </a>
+    <a href="#experience" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">
+      <span style="float:left;">Experience</span>
+      <span class="sidebar-with-icon">
+        <span style="width:2rem"><i class="fa fa-suitcase fa-fw"></i></span>
+      </span>
+    </a>
+    <a href="#education" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">
+      <span style="float:left;">Education</span>
+      <span class="sidebar-with-icon">
+        <span style="width:2rem"><i class="fa fa-graduation-cap fa-fw"></i></span>
+      </span>
+    </a>
+    <a href="#projects" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">
+      <span style="float:left;">Projects</span>
+      <span class="sidebar-with-icon">
+        <span style="width:2rem"><i class="fa fa-code fa-fw"></i></span>
+      </span>
+    </a>
+    <hr>
+    <a href="https://github.com/ivlin" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">
+      <span style="float:left;">Github</span>
+      <span class="sidebar-with-icon">
+        <span style="width:2rem"><i class="fa fa-github fa-fw"></i></span>
+      </span>
+    </a>
+    <a href="resume.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">
+      <span style="float:left;">Resume</span>
+      <span class="sidebar-with-icon">
+        <span style="width:2rem"><i class="fa fa-file-text fa-fw"></i></span>
+      </span>
+    </a>
+    <hr>
+    <a href="mailto:ivlin112@gmail.com" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">
+      <span style="float:left;">Email</span>
+      <span class="sidebar-with-icon">
+        <span style="width:2rem"><i class="fa fa-envelope fa-fw"></i></span>
+      </span>
+    </a>
+    <a href="https://linkedin.com/in/ivan-lin-702752139/" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">
+      <span style="float:left;">LinkedIn</span>
+      <span class="sidebar-with-icon">
+        <span style="width:2rem"><i class="fa fa-linkedin fa-fw"></i></span>
+      </span>
+    </a>
+  </div>
+</nav>
 
-    <title>Ivan Lin</title>
+<!-- Top menu on small screens -->
+<header class="w3-container w3-top w3-hide-large w3-blue-grey w3-xlarge w3-padding">
+  <a href="javascript:void(0)" class="w3-button w3-blue-grey w3-margin-right" onclick="w3_open()">☰</a>
+  <span>Ivan Lin</span>
+</header>
 
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
-    <!-- Custom styles for this template -->
-    <link href="css/heroic-features.css" rel="stylesheet">
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:340px;margin-right:40px">
 
-  </head>
+  <!-- Header -->
+  <div class="w3-container" style="margin-top:80px">
+    <h1 class="w3-jumbo"><b>Ivan Lin</b></h1>
+  </div>
 
-  <body>
-    <div class="root"></div>
-    <div class="navbar-space navbar navbar-expand-lg" style="display:hidden"></div>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="./index.html">Ivan Lin</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="./index.html">Home
-                <span class="sr-only">(current)</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./education.html">Education</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./experience.html">Experience</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+  <!-- Preface -->
+  <div class="w3-container" id="preface" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text"><b>Preface.</b></h1>
+    <hr style="width:50px;border:5px solid black" class="w3-round">
+    <p> Hi. Computer science master's student at Stony Brook University here. Experience with research in DNS privacy, interning as a full stack developer, service in leadership positions, working in teams, and some personal projects as well. I'm not one to talk about personal hobbies and information in a public setting, but you can shoot me an email. </p>
+  </div>
 
-    <!-- Page Content -->
-    <div class="container">
-      <!-- Page Features -->
 
-      <div class="row text-center">
-        <div class="col-lg-4 col-md-8 mb-6">
-          <div class="card">
-            <center>
-                <i data-feather="user"></i>
-            </center>
-            <div class="card-body">
-              <h4 class="card-title">Biography</h4>
-              <p class="card-text">
-                <div id="like_button_container"></div>
-                <table style="text-align:left">
-                <tr>
-                  <td><strong>Birth Date</strong></td><td style="width:1em"></td><td>April 28th, 1998</td>
-                </tr>
-                <tr>
-                  <td valign="top"><strong>Address</strong></td><td style="width:1em"></td><td>Request by Email</td>
-                </tr>
-                <tr>
-                  <td><strong>Email</strong></td><td style="width:1em"></td><td>ivlin112@gmail.com</td>
-                </tr>
-                <tr>
-                  <td><strong>Phone</strong></td><td style="width:1em"></td><td>Request by Email </td>
-                </tr>
-            </table>
-              </p>
-            </div>
-            <a href="mailto:ivlin112@gmail.com" class="card-footer-link">
-            <div class="card-footer">
-               Get in Touch
-            </div>
-            </a>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-8 mb-6">
-          <div class="card">
-            <center>
-                <i data-feather="book-open"></i>
-            </center>
-            <div class="card-body">
-              <h4 class="card-title">Education</h4>
-              <p class="card-text">
-                <div style="text-align:left">
-                  <strong>Stony Brook University</strong>, <span style="float:right;">2016-Present</span><br>
-                  <em>Bachelors in Computer Science</em><br>
-                  GPA: 3.87
-                  <br>
-                  <strong>Stuyvesant High School</strong>, <span style="float:right;">2012-2016</span><br>
-                  GPA: 4.0
-                  <br>
-                </div>
-              </p>
-            </div>
-            <a href="./education.html" class="card-footer-link">
-              <div class="card-footer">
-                  More...
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-8 mb-6">
-          <div class="card">
-            <center>
-                <i data-feather="briefcase"></i>
-            </center>
-            <div class="card-body">
-              <h4 class="card-title">Experience</h4>
-              <p class="card-text" style="text-align:left">
-                Currently:<br>
-                <b>Student Researcher</b> at SUNY Stony Brook<br>
-                Previously:<br>
-                <b>Computer Networks Teaching Assistant</b> at SUNY Stony Brook<br>
-                <b>Full Stack Developer Intern</b> at Sweetist<br>
-                <b>Engineering Mentor</b> at NFTE<br>
-                and more...
-              </p>
-            </div>
-            <a href="./experience.html" class="card-footer-link">
-              <div class="card-footer">
-                More...
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-      <!-- /.row -->
+  <!-- Modal for full size images on click-->
+  <div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display='none'">
+    <span class="w3-button w3-black w3-xxlarge w3-display-topright">×</span>
+    <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+      <img id="img01" class="w3-image">
+      <p id="caption"></p>
     </div>
-    <!-- /.container -->
+  </div>
 
-    <!-- Footer -->
-    <footer class="py-5 bg-dark thin-footer fixed-bottom">
-      <div class="container">
-        <div class="bottom-nav">
-            <div>
-                <a href="mailto:ivlin112@gmail.com" class="navbar-icon">
-                <center><i data-feather="mail"></i></center>
-                mail
-                </a>
-            </div>
-            <div>
-                <a href="resume.html" class="navbar-icon">
-                <center><i data-feather="file-text"></i></center>
-                resume
-                </a>
-            </div>
-            <div>
-                <a href="https://github.com/ivlin/" class="navbar-icon">
-                <center><i data-feather="github"></i></center>
-                github
-                </a>
-            </div>
-            <div>
-                <a href="https://linkedin.com/in/ivan-lin-702752139/" class="navbar-icon">
-                <center><i data-feather="linkedin"></i></center>
-                linkedin
-                </a>
-            </div>
+
+  <!-- Experience -->
+  <div class="w3-container" id="experience" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text"><b>Experience.</b></h1>
+    <hr style="width:50px;border:5px solid black" class="w3-round">
+     
+
+  <div class="w3-container">
+      <h4 class="w3-opacity" style="display: inline;"><b>Whatsbusy</b></h4> | Remote
+      <h6 class="w3-text"><i class="fa fa-calendar fa-fw w3-margin-right"></i>May 2020 - August 2020</h6>
+      <p>Migrated payment system to a multi-stage subscription model with Plaid and Stripe integration</p>
+      <p>Designed and implemented app to onboard clients and automatically manage their online advertising</p>
+      <hr>
+     </div>
+    <div class="w3-container">
+      <h4 class="w3-opacity" style="display: inline;"><b>Sweetist Co</b></h4> | New York, NY
+      <h6 class="w3-text"><i class="fa fa-calendar fa-fw w3-margin-right"></i>June 2017 - August 2017</h6>
+      <p>Developed tool for querying and graphically visualization arbitrary sets of shipment data</p>  
+    <p>Collaborated with the marketing team to enact sitewide design changes</p>
+      <p>Wrote and corrected dozens of Rails tests for new features leading up to update</p>
+      <hr>
+     </div>
+    <div class="w3-container">
+      <h4 class="w3-opacity" style="display: inline;"><b>Network for Teaching Entrepreneurship</b></h4> | New York, NY
+      <h6 class="w3-text"><i class="fa fa-calendar fa-fw w3-margin-right"></i>June 2015 - August 2015, June 2016 - August 2016</h6>
+      <p>Lead development of a mobile Android application using HTML, CSS, and Javascript with Apache Cordova</p><br>
+      </div>
+    </div>
+
+
+  <!-- Education -->
+  <div class="w3-container" id="education" style="margin-top:75px">
+  <h1 class="w3-xxxlarge w3-text"><b>Education.</b></h1>
+  <hr style="width:50px;border:5px solid black" class="w3-round">
+  <div class="w3-row-padding" style="padding-top: 1rem;">
+    <div class="w3-third w3-margin-bottom">
+      <img src="public/sbu.png" alt="Stony Brook University" style="width:100%; height:300px;">
+      <div class="w3-container w3-light-grey w3-padding-16">
+        <h3 style="display:inline">Stony Brook University. </h3> <h4 style="display:inline">Stony Brook, NY</h4>
+        <p class="w3-opacity">M.S. Computer Science (2020-2021)</p>
+        <p class="w3-opacity">B.S. Computer Science, Applied Mathematics and Statistics (2016-2020) - GPA 3.87</p>
+        <button class="w3-button">See More</button>
+      </div>
+    </div>
+    <div class="w3-third w3-margin-bottom">
+      <img src="public/POSTECH-campus.jpg" alt="POSTECH" style="width:100%; height:300px;">
+      <div class="w3-container w3-light-grey w3-padding-16">
+        <h3 style="display:inline">POSTECH. </h3> <h4 style="display:inline">Pohang, South Korea</h4>
+        <p>Study Abroad (2019) </p>
+        <button class="w3-button">See More</button>
+      </div>
+    </div>
+    <div class="w3-third w3-margin-bottom">
+      <img src="public/stuy.jpg" alt="Stuyvesant High School" style="width:100%; height:300px;">
+      <div class="w3-container w3-light-grey w3-padding-16">
+        <h3 style="display:inline">Stuyvesant High School. </h3> <h4 style="display:inline">New York, NY</h4>
+        <p>GPA 94.36</p>
+        <button class="w3-button">See More</button>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+  <!-- Activities -->
+  <div class="w3-container" id="skills" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text"><b>Skills.</b></h1>
+    <hr style="width:50px;border:5px solid black" class="w3-round">
+    <h3>Experience with: </h3>
+    <div class="w3-center">
+      <br>
+      <a class="w3-button w3-theme">HTML</a>
+      <a class="w3-button w3-theme">CSS</a>
+      <a class="w3-button w3-theme">Javascript</a>
+      <a class="w3-button w3-theme">React.js</a>
+      <a class="w3-button w3-theme">Python</a>
+      <a class="w3-button w3-theme">Django</a>
+      <a class="w3-button w3-theme">Ruby on Rails</a>
+      <a class="w3-button w3-theme">Postgres</a>
+      <a class="w3-button w3-theme">Java</a>
+      <a class="w3-button w3-theme">C</a>
+    </div>
+    <h3>Some experience with: </h3>
+    <div class="w3-center">
+      <br>
+      <a class="w3-button w3-theme">C++</a>
+      <a class="w3-button w3-theme">MongoDB</a>
+      <a class="w3-button w3-theme">Node.js</a>
+      <a class="w3-button w3-theme">Tensorflow</a>
+    </div>
+    <h3>Coursework: </h3>
+    <h5><em>Emphasis</em> indicates ongoing. <b>Bold</b> indicates graduate courses. <span class="w3-red">Red</span> indicates fields of research.</h5>
+    <div class="w3-center">
+      <br>
+      <a class="w3-button w3-theme course-ongoing course-graduate">Analysis of Algorithms</a>
+      <a class="w3-button w3-theme course-ongoing course-graduate">Computer Networks</a>
+      <a class="w3-button w3-theme course-ongoing course-graduate">Machine Learning</a>
+      <a class="w3-button w3-theme course-ongoing course-graduate">Distributed Systems</a>
+      <a class="w3-button w3-theme course-graduate course-graduate">Systems Security</a>
+      <a class="w3-button w3-theme course-graduate">Computational Geometry</a>
+      <a class="w3-button w3-theme course-graduate">Distributed Systems</a>
+      <a class="w3-button w3-theme">Offensive Security</a>
+      <a class="w3-button w3-theme">Theory of Computation</a>
+      <a class="w3-button w3-theme w3-red">DNS Privacy</a>
+    </div>
+  </div>
+
+  <!-- Projects -->
+  <div class="w3-container" id="projects" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text"><b>Projects.</b></h1>
+    <hr style="width:50px;border:5px solid black" class="w3-round">
+  	
+  	<div class="w3-col m6 w3-row-padding">
+  	  <div class="w3-light-grey">
+        <img src="public/directwriter.png" alt="DirectWriter" style="width:100%">
+        <div class="w3-container w3-padding-16">
+          <h3>DirectWriter</h3>
+          <p class="w3-opacity">C</p>
+          <p>This project writes out the structure of a directory as text in your terminal. You can then edit the text in-terminal and any changes made through the editor will be applied to the actual file names, so all renaming can be done in one place.</p>
+          <a href="https://github.com/ivlin/directwriter" class="w3-button w3-half w3-margin-bottom">Source</a>
         </div>
       </div>
-      <!-- /.container -->
-    </footer>
+      <div class="w3-light-grey">
+        <img src="public/graphit.png" alt="GraphIt" style="width:100%">
+        <div class="w3-container">
+          <h3>GraphIt</h3>
+          <p class="w3-opacity">Java, JavaFX</p>
+          <p>GraphIt is an interactive graphing utility developed in Java. The user can click on the graph and its nodes to add, remove, or move points. There are toggle switches to show the mean, standard deviation, regression line, and other statistical measures about the dataset. There are also options to textually modify the data points so that changes will be reflected in the graph. Batch modifications can be made by applying functions to all the points in the set.
+      </p>
+      <p>The user can also import their own data from a csv file or output the current dataset to a new csv.</p>
+          <a href="https://github.com/ivlin/graphit" class="w3-button w3-half w3-margin-bottom">Source</a>
+        </div>
+      </div>
+      <div class="w3-light-grey">
+        <img src="public/framefinder.png" alt="FrameFinder" style="width:100%">
+        <div class="w3-container">
+          <h3>FrameFinder</h3>
+          <p class="w3-opacity">HTML, CSS, Javascript, Python Flask</p>
+          <p>FrameFinder is meant to automatically look through videos for a specific moment. If you have hours of uncut video and you are trying to recall a specific moment, draw it out as best you can and use FrameFinder to look for you while you do something else.</p>
+          <a href="https://github.com/ivlin/framefinder" class="w3-button w3-half w3-margin-bottom">Source</a>
+          <a href="https://framefinder.herokuapp.com" class="w3-button w3-half w3-margin-bottom">Demo</a>
+        </div>
+      </div>
+  	</div>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- Feather Icons -->
-    <script src="https://unpkg.com/feather-icons"></script>
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    <script src="scripts/navbar.js"></script>
-    <!-- Load React. -->
-    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
-    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+  	<div class="w3-col m6">
+      <div class="w3-light-grey">
+        <img src="public/langannotator.png" alt="LangAnnotator" style="width:100%">
+        <div class="w3-container">
+          <h3>LangAnnotator</h3>
+          <p class="w3-opacity">HTML, CSS, React.js</p>
+          <p>Tool for writing and annotating notes, aimed at those learning a foreign language.</p>
+          <a href="https://github.com/ivlin/LangAnnotator" class="w3-button w3-half w3-margin-bottom">Source</a>
+          <a href="https://ivlin.github.io/LangAnnotator" class="w3-button w3-half w3-margin-bottom">Demo</a>
+        </div>
+      </div>
+      <div class="w3-light-grey">
+        <img src="public/mealz.png" alt="Mealz" style="width:100%">
+        <div class="w3-container">
+          <h3>Mealz</h3>
+          <p class="w3-opacity">HTML, CSS, Javascript, Python Flask</p>
+          <p>This website is aimed to give friends a way to track how they are splitting bills. Rather than constantly having money trade hands, many small transactions can be tracked and split between participants.</p>
+          <a href="https://github.com/ivlin/mealztm" class="w3-button w3-half w3-margin-bottom">Source</a>
+          <a href="https://mealz-tm.herokuapp.com" class="w3-button w3-half w3-margin-bottom">Demo</a>
+        </div>
+      </div>
+  	</div>
 
-    <!-- Load our React component. -->
-    <script src="components/Header.js"></script>
-  </body>
+
+<!-- End page content -->
+</div>
+<script>
+modal_data = {
+  {
+    'test': 1
+  },
+};
+
+// Script to open and close sidebar
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("myOverlay").style.display = "none";
+}
+
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+</script>
+
+</body>
 </html>
-
-
