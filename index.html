@@ -18,6 +18,8 @@ body {font-size:16px;}
 #projects .w3-container{margin:1rem;}
 .course-ongoing{font-style: italic}
 .course-graduate{font-weight: bold}
+::-webkit-scrollbar {width:1em;}
+::-webkit-scrollbar-thumb {background: #607d8b;}
 </style>
 <body>
 
@@ -39,6 +41,12 @@ body {font-size:16px;}
         <span style="width:2rem"><i class="fa fa-suitcase fa-fw"></i></span>
       </span>
     </a>
+    <a href="#activities" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">
+      <span style="float:left;">Activities</span>
+      <span class="sidebar-with-icon">
+        <span style="width:2rem"><i class="fa fa-scissors fa-fw"></i></span>
+      </span>
+    </a>
     <a href="#education" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">
       <span style="float:left;">Education</span>
       <span class="sidebar-with-icon">
@@ -58,20 +66,20 @@ body {font-size:16px;}
       </span>
     </a>
     <hr>
-    <a href="https://github.com/ivlin" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">
+    <a href="https://github.com/ivlin" target="_" class="w3-bar-item w3-button w3-hover-white">
       <span style="float:left;">Github</span>
       <span class="sidebar-with-icon">
         <span style="width:2rem"><i class="fa fa-github fa-fw"></i></span>
       </span>
     </a>
-    <a href="resume.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">
+    <a href="resume.html" target="_" class="w3-bar-item w3-button w3-hover-white">
       <span style="float:left;">Resume</span>
       <span class="sidebar-with-icon">
         <span style="width:2rem"><i class="fa fa-file-text fa-fw"></i></span>
       </span>
     </a>
     <hr>
-    <a href="mailto:ivlin112@gmail.com" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">
+    <a href="mailto:ivlin112@gmail.com" class="w3-bar-item w3-button w3-hover-white">
       <span style="float:left;">Email</span>
       <span class="sidebar-with-icon">
         <span style="width:2rem"><i class="fa fa-envelope fa-fw"></i></span>
@@ -127,15 +135,15 @@ body {font-size:16px;}
     <hr style="width:50px;border:5px solid black" class="w3-round">
      
 
-  <div class="w3-container">
-      <h4 class="w3-opacity" style="display: inline;"><b>Whatsbusy</b></h4> | Remote
+  	<div class="w3-container">
+      <h4 style="display: inline;"><b>Whatsbusy</b></h4> | Remote
       <h6 class="w3-text"><i class="fa fa-calendar fa-fw w3-margin-right"></i>May 2020 - August 2020</h6>
       <p>Migrated payment system to a multi-stage subscription model with Plaid and Stripe integration</p>
       <p>Designed and implemented app to onboard clients and automatically manage their online advertising</p>
       <hr>
      </div>
     <div class="w3-container">
-      <h4 class="w3-opacity" style="display: inline;"><b>Sweetist Co</b></h4> | New York, NY
+      <h4 style="display: inline;"><b>Sweetist Co</b></h4> | New York, NY
       <h6 class="w3-text"><i class="fa fa-calendar fa-fw w3-margin-right"></i>June 2017 - August 2017</h6>
       <p>Developed tool for querying and graphically visualization arbitrary sets of shipment data</p>  
     <p>Collaborated with the marketing team to enact sitewide design changes</p>
@@ -143,11 +151,42 @@ body {font-size:16px;}
       <hr>
      </div>
     <div class="w3-container">
-      <h4 class="w3-opacity" style="display: inline;"><b>Network for Teaching Entrepreneurship</b></h4> | New York, NY
+      <h4 style="display: inline;"><b>Network for Teaching Entrepreneurship</b></h4> | New York, NY
       <h6 class="w3-text"><i class="fa fa-calendar fa-fw w3-margin-right"></i>June 2015 - August 2015, June 2016 - August 2016</h6>
       <p>Lead development of a mobile Android application using HTML, CSS, and Javascript with Apache Cordova</p><br>
       </div>
     </div>
+
+
+  <!-- Academic Activities -->
+  <div class="w3-container" id="activities" style="margin-top:75px">
+  <h1 class="w3-xxxlarge w3-text"><b>Activities.</b></h1>
+  <hr style="width:50px;border:5px solid black" class="w3-round">
+    	<div class="w3-container">
+      <h4 style="display: inline;"><b>Student Research</b></h4> | Stony Brook, NY
+      <h6 class="w3-text"><i class="fa fa-calendar fa-fw w3-margin-right"></i>June 2019 - Present</h6>
+      <p>Modified Firefox’s DNS-over-HTTPS feature to distribute lookup load between multiple resolvers</p>
+      <p>Hoang, P. H., & <b>Lin I.</b> & Ghavamnia S., & Polychronakis, M., 2020, ’K-resolver: Towards Decentralizing
+Encrypted DNS Resolution’, Workshop paper presented at NDSS MADWeb, San Diego</p>
+      <hr>
+     </div>
+    <div class="w3-container">
+      <h4 style="display: inline;"><b>Stony Brook Solar Racing Team</b></h4> | Stony Brook, NY
+      <h6 class="w3-text"><b>Datalogging Lead</b> | <i class="fa fa-calendar fa-fw w3-margin-right"></i>August 2017 - May 2020</h6>
+      <p>Developed a telemetry system that consolidated onboard sensor information to a Raspberry Pi</p>
+      <h6 class="w3-text"><b>Vice President</b> | <i class="fa fa-calendar fa-fw w3-margin-right"></i>August 2018 - May 2020</h6>
+      <p>Managed the administrative duties including elections, recruitment, and internal affairs</p>
+      <p>Engaged with the school officials to negotiate finances, collaborate with other organizations, and hold events</p>
+      <h6 class="w3-text"><b>Secretary</b> | <i class="fa fa-calendar fa-fw w3-margin-right"></i>August 2017 - May 2017</h6>
+      <p>Acted as a point of contact between the organization and the school, the student body, and other organizations
+      <hr>
+     </div>
+    <div class="w3-container">
+      <h4 style="display: inline;"><b>Computer Networks Teaching Assistant</b></h4> | Stony Brook, NY
+      <h6 class="w3-text"><i class="fa fa-calendar fa-fw w3-margin-right"></i>June 2015 - August 2015, June 2016 - August 2016</h6>
+      <p>Ran Python tutorial sessions, designed and graded homeworks, and answered student questionss</p><br>
+      </div>
+    </div>	
 
 
   <!-- Education -->
@@ -159,9 +198,12 @@ body {font-size:16px;}
       <img src="public/sbu.png" alt="Stony Brook University" style="width:100%; height:300px;">
       <div class="w3-container w3-light-grey w3-padding-16">
         <h3 style="display:inline">Stony Brook University. </h3> <h4 style="display:inline">Stony Brook, NY</h4>
-        <p class="w3-opacity">M.S. Computer Science (2020-2021)</p>
-        <p class="w3-opacity">B.S. Computer Science, Applied Mathematics and Statistics (2016-2020) - GPA 3.87</p>
-        <button class="w3-button">See More</button>
+        <p>M.S. Computer Science (2020-2021)</p>
+        <p>B.S. Computer Science, Applied Mathematics and Statistics (2016-2020) - GPA 3.85</p>
+        <!--
+        <hr class="w3-margin-bottom" style="border:1px solid rgba(200,200,200,0.5);">
+        <button class="w3-button w3-half">See More</button>
+    	-->
       </div>
     </div>
     <div class="w3-third w3-margin-bottom">
@@ -169,15 +211,21 @@ body {font-size:16px;}
       <div class="w3-container w3-light-grey w3-padding-16">
         <h3 style="display:inline">POSTECH. </h3> <h4 style="display:inline">Pohang, South Korea</h4>
         <p>Study Abroad (2019) </p>
-        <button class="w3-button">See More</button>
+        <!--
+        <hr class="w3-margin-bottom" style="border:1px solid rgba(200,200,200,0.5);">
+        <button class="w3-button w3-half">See More</button>
+    	-->
       </div>
     </div>
     <div class="w3-third w3-margin-bottom">
       <img src="public/stuy.jpg" alt="Stuyvesant High School" style="width:100%; height:300px;">
       <div class="w3-container w3-light-grey w3-padding-16">
         <h3 style="display:inline">Stuyvesant High School. </h3> <h4 style="display:inline">New York, NY</h4>
-        <p>GPA 94.36</p>
-        <button class="w3-button">See More</button>
+        <p>(2012-2016) - GPA 94.36</p>
+		<!--
+        <hr class="w3-margin-bottom" style="border:1px solid rgba(200,200,200,0.5);">
+        <button class="w3-button w3-half">See More</button>
+    	-->
       </div>
     </div>
   </div>
@@ -235,7 +283,7 @@ body {font-size:16px;}
   	<div class="w3-col m6 w3-row-padding">
   	  <div class="w3-light-grey">
         <img src="public/directwriter.png" alt="DirectWriter" style="width:100%">
-        <div class="w3-container w3-padding-16">
+        <div class="w3-container">
           <h3>DirectWriter</h3>
           <p class="w3-opacity">C</p>
           <p>This project writes out the structure of a directory as text in your terminal. You can then edit the text in-terminal and any changes made through the editor will be applied to the actual file names, so all renaming can be done in one place.</p>
