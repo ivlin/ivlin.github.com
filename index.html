@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
 <title>Ivan Lin</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" href="public/favicon.png"/>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -21,6 +23,7 @@ body {font-size:16px;}
 ::-webkit-scrollbar {width:1em;}
 ::-webkit-scrollbar-thumb {background: #607d8b;}
 </style>
+</head>
 <body>
 
 <!-- Sidebar/menu -->
@@ -334,7 +337,16 @@ Encrypted DNS Resolution’, Workshop paper presented at NDSS MADWeb, San Diego<
           <a href="https://mealz-tm.herokuapp.com" class="w3-button w3-half w3-margin-bottom">Demo</a>
         </div>
       </div>
-  	</div>
+      <div class="w3-light-grey">
+        <div class="w3-container">
+          <h3>FDNS (Fork)</h3>
+          <p class="w3-opacity">C</p>
+          <p>The original fdns project is an open-source dns stub resolver. This fork significantly alters some of the structures of the original fdns code. This fork significantly alters some of the structures of the original fdns code. It implements the k-resolver strategy described in the following paper:
+<a href="https://arxiv.org/abs/2001.08901"> K-resolver: Towards Decentralizing Encrypted DNS Resolution</a>. It divides DNS lookup load across multiple possible resolvers. The resolver list is not kept up-to-date - when it contacts a nonfunctional resolver, it will fallback to standard DNS.</p>
+          <a href="https://github.com/ivlin/fdns" class="w3-button w3-half w3-margin-bottom">Source</a>
+        </div>
+      </div>
+  </div>
 
 
 <!-- End page content -->
