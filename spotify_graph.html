@@ -108,7 +108,7 @@
 
 
             function generateScale(data, key, range) {
-                if (!isNaN(data[0][key])) {
+                if (!isNan(data[0][key])) {
                     let min_x = data.reduce((prev, cur) => parseFloat(cur[key]) < prev ? parseFloat(cur[key]) : prev, parseFloat(data[0][key]));
                     let max_x = data.reduce((prev, cur) => parseFloat(cur[key]) > prev ? parseFloat(cur[key]) : prev, parseFloat(data[0][key]));
                     return d3.scaleLinear().domain([min_x, max_x]).range(range)
@@ -219,18 +219,19 @@
                 g.append("rect")
                     .attr("width", barWidth - (mode == CATEGORICAL ? bar_margin : 0))
                     .attr("y", height - 2 * axis_margin)
-                    .transition()                 // Keep on changing the place where transition starts and see the difference.
+                    .transition()
                     .ease(d3.easeLinear)
                     .duration(500)
                     .attr("y", (d) => height - 2 * axis_margin - y_scale(d.length))
                     .attr("height", (d) => y_scale(d.length));
             
+                g.selectAll("text").remove()
                 g.append("text")
-                    .attr("y", //(d) => y_scale_flipped(d.length) + 25)
-                    function(d) { console.log(d.length); return y_scale_flipped(d.length) + 25;})
+                    .attr("y", (d) => y_scale_flipped(d.length) - 15)
                     .attr("x", barWidth / 2 - (mode == CATEGORICAL ? 8 : 0))
                     .attr("dx", "0.5em")
                     .attr("display", "none")
+                    .attr("stroke", "#B24C63")
                     .text((d) => d.length);
 
                 /*
@@ -262,10 +263,10 @@
                         .style("text-anchor", "middle")
                         .text(primary_key);
                 } else {
+                    x_axis_line.call(x_axis);
                     x_axis_line.selectAll(".tick").selectAll("text")
                         .attr("transform", `translate(0,0)`)
                         .attr("transform", mode == NUMERIC ? "rotate(0)" : "rotate(-25)")
-                    x_axis_line.call(x_axis);
                     x_label.text(primary_key);
                 }
                 if (y_axis_line == undefined) {
