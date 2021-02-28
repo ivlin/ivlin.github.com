@@ -104,6 +104,10 @@
                 .attr("height", height - 10)
                 .attr("transform", `translate(${0}, ${0})`);
 
+            function isNumeric(value) {
+                return !isNaN(value);
+            }
+
 
             function generateScale(data, key, range) {
                 if (isNumeric(data[0][key])) {
