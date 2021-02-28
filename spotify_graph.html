@@ -20,13 +20,11 @@
     svg { margin: 5px; z-index: 0;}
     svg rect { fill: #357DED;}
     svg rect:hover { fill: #B24C63; }
-    svg .bar-container text{ display: none; }
-    svg .bar-container:hover text{ display: block; }
     svg text { fill:white; font: 14px sans-serif; text-anchor: end; }
     svg domain, svg g.tick text{ fill: black; }
     circle { fill: #357DED; opacity: 0.75;}
     circle:hover { fill: #B24C63; opacity: 1;}
-    svg .axis-label { font-size: 2rem; fill: black; position: fixed; }
+
     .dropdown {
         z-index: 1;
         display: inline-block;
@@ -79,9 +77,9 @@
     <script>
         const CATEGORICAL = 1,
                     NUMERIC = 2;
-        const svg_margin = 5, axis_margin = 105, bar_margin = 15;
+        const svg_margin = 5, axis_margin = 85, bar_margin = 15;
         function graph_test(data, key) {
-            var svg, g, x_axis_line, x_label, y_axis_line, y_label, y_scale_flipped, circle;
+            var svg, g, x_axis_line, y_axis_line, y_scale_flipped, circle;
             
             var cur_threshold = 10;
             var isMouseDown = false;
@@ -106,9 +104,13 @@
                 .attr("height", height - 10)
                 .attr("transform", `translate(${0}, ${0})`);
 
+            function isNumeric(value) {
+                return !isNaN(value);
+            }
+
 
             function generateScale(data, key, range) {
-                if (!isNaN(data[0][key])) {
+                if (isNumeric(data[0][key])) {
                     let min_x = data.reduce((prev, cur) => parseFloat(cur[key]) < prev ? parseFloat(cur[key]) : prev, parseFloat(data[0][key]));
                     let max_x = data.reduce((prev, cur) => parseFloat(cur[key]) > prev ? parseFloat(cur[key]) : prev, parseFloat(data[0][key]));
                     return d3.scaleLinear().domain([min_x, max_x]).range(range)
@@ -160,10 +162,8 @@
                     x_axis = d3.axisBottom().scale(x_scale);
                     x_axis_line.call(x_axis)
                     x_axis_line.selectAll("text").attr("transform", mode == NUMERIC ? "rotate(0)" : "rotate(-25)")
-                    x_label.text(primary_key);
-                    y_label.text(secondary_key);
                     return;
-                } else if (!isNaN(data[0][primary_key])) {
+                } else if (isNumeric(data[0][primary_key])) {
                     mode = NUMERIC;
                     
                     bin.thresholds(cur_threshold);
@@ -181,7 +181,7 @@
                     }
                     x_scale = generateScale(new_data, "x0", [barWidth / 2, barWidth / 2 + (barWidth + bar_margin) * new_data.length]);
                     x_axis = d3.axisBottom().scale(x_scale);
-                    svg.attr("width", barWidth + bar_margin + (barWidth + bar_margin) * (new_data.length));
+                    svg.attr("width", barWidth + (barWidth + bar_margin) * (new_data.length));
                 }
                 y_max = new_data.reduce((x,y) => (y.length > x) ? y.length : x, 0);
                 y_scale = d3.scaleLinear().domain([0, y_max]).range([0, height - 2 * axis_margin])
@@ -206,7 +206,6 @@
                 g = g.enter()
                     .append("g")
                     .merge(g)
-                    .attr("class", "bar-container")
                     .attr("transform", function (d, i) {
                         if (mode == CATEGORICAL) {
                             return `translate(${axis_margin + bar_margin / 2+ i * (barWidth + bar_margin)}, ${axis_margin})`;
@@ -224,11 +223,16 @@
                     .duration(500)
                     .attr("y", (d) => height - 2 * axis_margin - y_scale(d.length))
                     .attr("height", (d) => y_scale(d.length));
+
+                g.on("mouseover", function(){
+                    this.querySelector("text").setAttribute("display", "block");
+                }).on("mouseout", function(){
+                    this.querySelector("text").setAttribute("display", "none");
+                })
             
                 g.append("text")
-                    .attr("y", //(d) => y_scale_flipped(d.length) + 25)
-                    function(d) { console.log(d.length); return y_scale_flipped(d.length) + 25;})
-                    .attr("x", barWidth / 2 - (mode == CATEGORICAL ? 8 : 0))
+                    .attr("y", (d) => y_scale_flipped(d.length) + 25)
+                    .attr("x", barWidth / 2 - 8)
                     .attr("dx", "0.5em")
                     .attr("display", "none")
                     .text((d) => d.length);
@@ -255,36 +259,19 @@
                                 x_axis_line.selectAll("text").attr("display","inherit");
                             }
                         })
-                    x_label = svg.append("text")
-                        .attr("class", "axis-label")
-                        .attr("transform", `translate(${2 * axis_margin}, ${height - 15})`)
-                        .attr("stroke", "black")
-                        .style("text-anchor", "middle")
-                        .text(primary_key);
                 } else {
-                    x_axis_line.selectAll(".tick").selectAll("text")
+                    x_axis_line.selectAll("text")
                         .attr("transform", `translate(0,0)`)
                         .attr("transform", mode == NUMERIC ? "rotate(0)" : "rotate(-25)")
-                    x_axis_line.call(x_axis);
-                    x_label.text(primary_key);
+                    x_axis_line.call(x_axis)
                 }
                 if (y_axis_line == undefined) {
                     y_axis_line = svg.append("g")
                         .attr("transform", `translate(${axis_margin},${axis_margin})`)
                         .attr("class", "y-axis")
                         .call(y_axis_flipped);
-                    y_label = svg.append("text")
-                        .attr("class", "axis-label")
-                        .attr("stroke", "black")
-                        .attr("transform", "rotate(-90)")
-                        .attr("y", 20)
-                        .attr("x", (-height / 2))
-                        .attr("dy", "1em")
-                        .style("text-anchor", "middle")
-                        .text("Count");
                 } else {
                     y_axis_line.call(y_axis_flipped);
-                    y_label.text("Count");
                 }
             }
 
@@ -363,7 +350,7 @@
                 prevX = e.x;
             }));
         }
-        d3.csv("output.csv").then(function(data){
+        d3.csv("public/spotify.csv").then(function(data){
             graph_test(data, "track name"); 
         });
     </script>
