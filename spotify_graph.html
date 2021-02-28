@@ -10,13 +10,10 @@
 </head>
 <style>
     body { background-color: white; -ms-overflow-style: none; scrollbar-width: none; font-family: sans-serif; margin:0; }
-    /* body::-webkit-scrollbar { display: none; } */
-
     ::-webkit-scrollbar { background: #bbb; height: 10px; }
     ::-webkit-scrollbar-thumb { background: #357DED; }
 
     .top-nav { background-color: #abb4cf; width: 100%; display: flex; flex-direction: row; position: fixed; justify-content: flex-end; z-index: 1; }
-
     svg { margin: 5px; z-index: 0;}
     svg rect { fill: #357DED;}
     svg rect:hover { fill: #B24C63; }
@@ -27,26 +24,9 @@
     circle { fill: #357DED; opacity: 0.75;}
     circle:hover { fill: #B24C63; opacity: 1;}
     svg .axis-label { font-size: 2rem; fill: black; position: fixed; }
-    .dropdown {
-        z-index: 1;
-        display: inline-block;
-        background-color: #454955;
-        color:#f3eff5;
-        min-width: 200px;
-        font-family: sans-serif;
-    }
-
-    .dropdown-content {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        color: #454955;
-        background-color: #f3eff5;
-        min-width: 200px;
-        padding: 0px 0px;
-        z-index: 1;
-    }
-
+    .dropdown { background-color: #454955; color:#f3eff5; min-width: 200px; }
+    .dropdown-content { display: none; flex-direction: column; position: absolute;
+        color: #454955; background-color: #f3eff5; min-width: 200px; }
     .dropdown-header { padding: 10px; }
     .dropdown-option { width: 180px; padding: 10px;}
     .dropdown-option:hover { margin: 0; background-color: grey; width: 180px; padding: 10px; }
@@ -55,10 +35,12 @@
     text { background-color: white; }
 </style>
 <body>
+    <title> Spotify Track Performances </title>
     <div class="top-nav">
+        <div class="dropdown-header" style="flex-grow: 1; font-style: bold"> Spotify Songs </div>
         <div class="dropdown-header"> Maximum Bins Allowed: </div>
         <div class="dropdown-header" id="threshold-label">10</div>
-        <div class="dropdown-header"> Flip Axes </div>
+        <div class="dropdown-header"> Flip Axes: </div>
         <div class="dropdown-header">
             <input type="checkbox" id="flip-axes" disabled></input>
         </div>
@@ -68,10 +50,21 @@
             <div id="category-selector" class="dropdown-content">
             </div>
         </div>
+
         <div class="dropdown-header"> Secondary Variable </div>
-        <div class="dropdown" style="left: 250px">
+        <div class="dropdown">
             <div class="dropdown-header">---</div>
             <div id="category-selector2" class="dropdown-content">
+            </div>
+        </div>
+        
+        <div class="dropdown-header"> Data </div>
+        <div class="dropdown">
+            <div class="dropdown-header"> Source </div>
+            <div class="dropdown-content">
+                <a class="dropdown-option" href="https://www.kaggle.com/edumucelli/spotifys-worldwide-daily-song-ranking">Song Ranking</a>
+                <a class="dropdown-option" href="https://www.kaggle.com/mrmorj/dataset-of-songs-in-spotify?select=genres_v2.csv">Spotify Song Dataset 1</a>
+                <a class="dropdown-option" href="https://www.kaggle.com/yamaerenay/spotify-dataset-19212020-160k-tracks?select=data.csv">Spotify Song Dataset 2</a>
             </div>
         </div>
     </div>
@@ -143,8 +136,7 @@
                         circle = circle.enter().append("circle")
                         circle.attr("cx", axis_margin).attr("cy", height - axis_margin).attr("r", 1);
                     }
-                    circle
-                        .transition()
+                    circle.transition()
                         .ease(d3.easeBackInOut)
                         .duration(2000)
                         .delay((d, i) => i)
