@@ -108,7 +108,7 @@
 
 
             function generateScale(data, key, range) {
-                if (!isNan(data[0][key])) {
+                if (!isNaN(data[0][key])) {
                     let min_x = data.reduce((prev, cur) => parseFloat(cur[key]) < prev ? parseFloat(cur[key]) : prev, parseFloat(data[0][key]));
                     let max_x = data.reduce((prev, cur) => parseFloat(cur[key]) > prev ? parseFloat(cur[key]) : prev, parseFloat(data[0][key]));
                     return d3.scaleLinear().domain([min_x, max_x]).range(range)
