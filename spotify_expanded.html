@@ -47,7 +47,7 @@
     table, th, td { border: 1px solid black; }
     .scatter-show { display: none; }
     .legend-square { width: 1rem; height: 1rem; display:inline-block; }
-    .show-parallel { display: none;  }
+    .show-parallel { display: block;  }
     polyline:hover {fill:"red"; stroke:"blue";}
 </style>
 <body>
@@ -765,10 +765,12 @@
                     generateMDS(data, [{'x_l2': 0, 'y_l2': 1}, {'x_l2': 1, 'y_l2': 0}], "svg-mds", "Multidimensional Scaling", "x", "y");
                     d3.select(".svg-mds").attr("opacity", 0).attr("visibility", "hidden");
                     toggleView(".svg-mds");
+                    document.getElementsByClassName("show-parallel")[0].style.visibility = "visible";
                 });
             } else {
                 generateBiplot(null, [{'x_l2': 0, 'y_l2': 1}, {'x_l2': 1, 'y_l2': 0}], "svg-mds", "Multidimensional Scaling", "x", "y");
                 toggleView(".svg-mds");
+                document.getElementsByClassName("show-parallel")[0].style.visibility = "visible";
             }
         });
         let op4 = option(document.getElementById("category-selector"), "Parallel");
@@ -782,7 +784,6 @@
             } else {
                 toggleView(".svg-parallel");
             }
-            document.getElementsByClassName("show-parallel")[0].style.visibility = "visible";
         });
 
         for (var i=0; i < parseInt(document.getElementById("cluster-count").value); i++) {
