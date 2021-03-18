@@ -865,7 +865,7 @@
         let op4 = option(document.getElementById("category-selector"), "Parallel");
         op4.addEventListener("click", function(){
             if (views.indexOf(".svg-parallel") == -1) {
-                d3.csv("public/spotify_numeric_norm.csv").then(function(data){
+                d3.csv("public/spotify_numeric.csv").then(function(data){
                     generateParallelCoordinates(data.slice(), Object.keys(data[0]).filter((key)=>isNaN(key)));
                     d3.select(".svg-parallel").attr("opacity", 0).attr("visibility", "hidden");
                     toggleView(".svg-parallel");
@@ -896,7 +896,7 @@
         });
         document.getElementById("pcp-mds-select").addEventListener("click", function(e) {   
             if (views.indexOf(".svg-parallel") == -1) {
-                d3.csv("public/spotify_numeric_norm.csv").then(function(data){
+                d3.csv("public/spotify_numeric.csv").then(function(data){
                     generateParallelCoordinates(data.slice(), selectionOrder.map((x)=>x["labels"]));
                     d3.select(".svg-parallel").attr("opacity", 0).attr("visibility", "hidden");
                     toggleView(".svg-parallel");
