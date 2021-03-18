@@ -42,18 +42,29 @@
     #info-modal:hover { background-color: rgba(255,255,255,1); color: rgba(0,0,0,1); }
     #info-modal:hover table { display: block; }
     .svg-scatter-matrix .tick text { font-size: 10px; }
-    .svg-parallel text.axis-label { font-size: 18px; text-anchor: middle;}
-    .svg-parallel text.min-y, .svg-parallel text.max-y { font-size: 18px; text-anchor: end;}
+    .svg-parallel text.axis-label { font-size: 1rem; text-anchor: middle;}
+    .svg-parallel text.min-y, .svg-parallel text.max-y { font-size: 1rem; text-anchor: end;}
     table, th, td { border: 1px solid black; }
     .scatter-show { display: none; }
     .legend-square { width: 1rem; height: 1rem; display:inline-block; }
     .show-parallel { display: block;  }
     polyline:hover {fill:"red"; stroke:"blue";}
+    .tick text, text.data { font-size: 1rem; }
+    .mds-option:hover { cursor: pointer; text-decoration: underline; }
+    .parallel-axes text { font-size: 0.8rem ; font-weight: bold;}
 </style>
 <body>
     <title> Spotify Track Performances </title>
     <div class="top-nav">
-        <div class="dropdown-header" style="flex-grow: 1; font-style: bold"> Spotify Songs </div>
+        <div class="dropdown-header" style="font-style: bold"> Spotify Songs </div>
+        <div class="dropdown">
+            <div class="dropdown-header"> Analytic View </div>
+            <div class="dropdown-content">
+                <a class="dropdown-option" href="/spotify_data.html">Data View</a>
+                <!-- <a class="dropdown-option" href="/spotify_analytics.html">Analytic View</a> -->
+            </div>
+        </div>
+        <div class="dropdown-header" style="flex-grow: 1; font-style: bold"> </div>
         <div class="dropdown">
             <div class="dropdown-header">Change Graph</div>
             <div id="category-selector" class="dropdown-content">
@@ -73,7 +84,7 @@
     <div id="info-modal" class="scatter-show">
         <div id="scatter-matrix-screen">
             <span style="cursor: pointer" class="to-scree" class="scatter-show"><< Return</span><br>
-            <div class="scatter-show">
+            <div class="scatter-show" id="dim-ind-container">
             <hr>
             Dimensionality Index: <span id="dim-ind"> </span><br>
             </div>
@@ -96,9 +107,8 @@
                 <div id="legend-options">
                 </div>
             </div>
-            <div class="scatter-show">
-            <hr>
-            <table id="tr-test">
+            <div class="scatter-show" id="dim-ind-table-container">
+            <table id="dim-ind-table">
             </table>
             </div>
             <div class="show-parallel">
@@ -107,7 +117,13 @@
                 <select name="distance-metric" id="distance-metric">
                   <option value="l2">Euclidean</option>
                   <option value="l1">Manhattan</option>
+                  <option value="correlation">Correlation</option>
                 </select>
+                <hr>
+                <ol id="selection-order">
+                </ol>
+                <div id="clear-mds-select" class="mds-option"> Clear Selection</div>
+                <div id="pcp-mds-select" class="mds-option" style="display:none"> View PCP</div>
             </div>
         </div>
     </div>
@@ -119,12 +135,14 @@
             matrixWidth = window.innerWidth - 10,
             matrixHeight = window.innerHeight - matrixYOffset,
             legendWidth = 200,
-            graphMargin = 15,
+            graphMargin = 25,
             graphWidth = (matrixWidth - legendWidth - matrixDim * 2 * graphMargin) / matrixDim,
             graphHeight = (matrixHeight - matrixDim * 2 * graphMargin) / matrixDim,
             screeMargin = 20,
-            graphTransitionTime = 2500;
-        var datasets = {}
+            graphTransitionTime = 2500,
+            axisMargin = 120;
+        var selectionOrder = [];
+        var datasets = {};
 
         var scaleX = null, scaleY = null;
         svg = d3.select("body")
@@ -156,7 +174,16 @@
                     .attr("opacity", 0).transition().duration(graphTransitionTime).attr("opacity", 1);
 
             }
-            document.getElementsByClassName("show-parallel")[0].style.visibility = "hidden";
+            if (view == ".svg-scatter-matrix") {
+                // document.getElementById("dim-ind-table").style.display = "block";
+                document.getElementById("dim-ind-container").style.display = "block";
+                document.getElementById("dim-ind-table-container").style.display = "block";
+            } else {
+                // document.getElementById("dim-ind-table").style.display = "none";
+                document.getElementById("dim-ind-container").style.display = "none";
+                document.getElementById("dim-ind-table-container").style.display = "none";
+            }
+            document.getElementsByClassName("show-parallel")[0].style.display = "none";
         }
 
         function generateScale(data, key, range) {
@@ -283,8 +310,8 @@
                     .attr("opacity", 0).transition().duration(graphTransitionTime).attr("opacity", 1);
             }).then(function() {
                 vitalAttributes.push("Dimension");
-                if (d3.select("#tr-test tr").empty()) {
-                    let th = d3.select("#tr-test")
+                if (d3.select("#dim-ind-table tr").empty()) {
+                    let th = d3.select("#dim-ind-table")
                         .append("tr")
                         .selectAll("th")
                         .data(Object.keys(data[0]).filter((k)=>vitalAttributes.indexOf(k) >= 0))
@@ -292,7 +319,7 @@
                         .append("th")
                         .text((d)=>d);
 
-                    let tr = d3.select("#tr-test")
+                    let tr = d3.select("#dim-ind-table")
                         .selectAll("tr")
                         .data(data.slice(0, dim_ind).concat([accumulateObjects(data.slice(0, dim_ind))]), d=>d)
                         .enter()
@@ -305,12 +332,12 @@
                         .append("td")
                         .text(function(d) { return parseNum(d[1],3); });
                 } else {
-                    d3.selectAll("#tr-test th")
+                    d3.selectAll("#dim-ind-table th")
                         .data(Object.keys(data[0])
                         .filter((k)=>vitalAttributes.indexOf(k) >= 0))
                         .join().text((d)=>d);
 
-                    d3.select("#tr-test")
+                    d3.select("#dim-ind-table")
                         .selectAll("tr.data-tr")
                         .data(data.slice(0, dim_ind).concat([accumulateObjects(data.slice(0, dim_ind))]), d=>d)
                         .join("tr")
@@ -331,7 +358,7 @@
                 .attr("class", "scree-bar")
                 .attr("width", barWidth)
                 .attr("height", (d)=>scaleY(parseFloat(d[key])))
-                .attr("x", (d, i)=>graphMargin + scaleX(String(i+1)))
+                .attr("x", (d, i)=>graphMargin / 2 + scaleX(String(i+1)))
                 .attr("y", (d)=>scaleYReversed(parseFloat(d[key]))).attr("fill","black")
                 .on("click", (d,i)=> scatterWithAttr(data, i));
         }
@@ -342,9 +369,6 @@
                 cumulativeContribution.push(i == 0 ? parseFloat(data[i][key]) : 
                     parseFloat(data[i][key]) + cumulativeContribution[cumulativeContribution.length - 1])
             }
-            // let cumulativeLine = d3.line()
-            //     .x((d,i)=>scaleX(String(i+1)) + 0.5 * barWidth + graphMargin)
-            //     .y((d)=>scaleYReversed(d));
             let cumulativeLine = d3.line()
                 .x(function(d,i) { return scaleX(String(i+1)) + 0.5 * barWidth + graphMargin; })
                 .y((d)=>scaleYReversed(d));
@@ -361,8 +385,7 @@
             let svg_scree = svg.append("g").attr("class", "svg-scree");
             views.push(".svg-scree");
             cur_view = ".svg-scree";
-
-            let axisMargin = 120;
+            var graphMargin = 10;
             let barWidth = (matrixWidth - 2 * axisMargin) / (data.length) - 2 * graphMargin;
             let labels = [];
             let locs = [];
@@ -374,7 +397,7 @@
             
             var scaleX = d3.scaleOrdinal().domain(labels).range(locs);
             var scaleY = d3.scaleLinear().domain([0,1]).range([0, matrixHeight - 2 * screeMargin - axisMargin]);
-            var scaleYReversed = d3.scaleLinear().domain([0,1]).range([matrixHeight - 2 * screeMargin - axisMargin / 2 - 20, axisMargin / 2 - 20]);
+            var scaleYReversed = d3.scaleLinear().domain([0,1]).range([matrixHeight - 2 * screeMargin - axisMargin / 2, axisMargin / 2]);
 
             svg_scree.append("text")
                 .attr("x", matrixWidth / 2)
@@ -382,8 +405,8 @@
                 .attr("text-anchor", "middle")
                 .text("PCA Decomposition Explained Variance");
             svg_scree.append("text")
-                .attr("x", matrixWidth / 2)
-                .attr("y", matrixHeight - axisMargin / 2)
+                .attr("x", matrixWidth / 2 - axisMargin)
+                .attr("y", matrixHeight - 40)
                 .text("PCA Component")
             svg_scree.append("text")
                 .attr("transform", `rotate(${-90})`)
@@ -416,108 +439,127 @@
             return total;
         }
 
-        function generateMDS(data, vectors, chartname, title, x_axis, y_axis, showVectors) {
-            let svg_biplot = svg.append("g").attr("class", chartname);
+        function generateMDS(data, key_pts, vectors, chartname, title, x_axis, y_axis, showVectors) {
+            if (views.indexOf(`.${chartname}`) >= 0) {
+                return
+            }
+
+            let svg_mds = svg.append("g").attr("class", chartname);
             views.push("." + chartname);
             cur_view = `.${chartname}`
 
-            var axisMargin = 120;
+            var minX = Math.min.apply(Math, data.map((x)=>parseFloat(x['x_l1'])).concat(data.map((x)=>parseFloat(x['x_l2']))));
+            var maxX = Math.max.apply(Math, data.map((x)=>parseFloat(x['x_l1'])).concat(data.map((x)=>parseFloat(x['x_l2']))));
+            var minY = Math.min.apply(Math, data.map((x)=>parseFloat(x['y_l1'])).concat(data.map((x)=>parseFloat(x['y_l2']))));
+            var maxY = Math.max.apply(Math, data.map((x)=>parseFloat(x['y_l1'])).concat(data.map((x)=>parseFloat(x['y_l2']))));
 
-            let minX = Math.min.apply(Math, data.map((x)=>parseFloat(x['x_l1'])).concat(data.map((x)=>parseFloat(x['x_l2']))));
-            let maxX = Math.max.apply(Math, data.map((x)=>parseFloat(x['x_l1'])).concat(data.map((x)=>parseFloat(x['x_l2']))));
-            let minY = Math.min.apply(Math, data.map((x)=>parseFloat(x['y_l1'])).concat(data.map((x)=>parseFloat(x['y_l2']))));
-            let maxY = Math.max.apply(Math, data.map((x)=>parseFloat(x['y_l1'])).concat(data.map((x)=>parseFloat(x['y_l2']))));
-            
-            scaleX = d3.scaleLinear().domain([minX, maxX]).range([legendWidth, matrixWidth - 2 * axisMargin - legendWidth])
-            mds_scale = scaleX;
-            scaleY = d3.scaleLinear().domain([minY, maxY]).range([matrixHeight - 2 * axisMargin, 0])
-            let axisX = d3.axisBottom().scale(scaleX);
-            let axisY = d3.axisLeft().scale(scaleY);
+            scaleX = d3.scaleLinear().domain([minX, maxX]).range([legendWidth + axisMargin, matrixWidth])
+            scaleY = d3.scaleLinear().domain([minY, maxY]).range([matrixHeight - axisMargin, axisMargin])
+            var axisX = d3.axisBottom().scale(scaleX);
+            var axisY = d3.axisLeft().scale(scaleY);
 
-            svg_biplot.append("g")
-                .attr("transform", `translate(${axisMargin},${scaleY(minY) + axisMargin})`)
+            svg_mds.append("g")
+                .attr("transform", `translate(${0},${scaleY(minY)})`)
+                .attr("class", "x-axis")
                 .call(axisX);
-            svg_biplot.append("g")
-                .attr("transform", `translate(${axisMargin + legendWidth}, ${axisMargin})`)
+            svg_mds.append("g")
+                .attr("transform", `translate(${axisMargin + legendWidth}, ${0})`)
                 .attr("class", "y-axis")
                 .call(axisY);
-            svg_biplot.append("text")
-                .attr("x", matrixWidth / 2)
+            svg_mds.append("text")
+                .attr("x", matrixWidth / 2 + axisMargin)
                 .attr("y", axisMargin / 2)
                 .attr("text-anchor", "middle")
                 .text(title)
-            svg_biplot.append("text")
-                .attr("x", matrixWidth / 2)
+            svg_mds.append("text")
+                .attr("x", matrixWidth / 2 + axisMargin)
                 .attr("y", matrixHeight - axisMargin / 2)
                 .text(x_axis)
-            svg_biplot.append("text")
+            svg_mds.append("text")
                 .attr("transform", `rotate(${-90})`)
                 .attr("y", 20 + legendWidth)
                 .attr("x", - matrixHeight / 2)
                 .attr("dy", "1em")
                 .attr("text-anchor", "middle")
                 .text(y_axis)
-
-            let circles = svg_biplot.selectAll("circle").data(data)
+            
+            let circles_data = svg_mds.selectAll("circle.data").data(data)
                 .enter().append("circle")
-                .attr("cx", (d)=>axisMargin + scaleX(parseFloat(d["x_l2"])))
-                .attr("cy", (d)=>axisMargin + scaleY(parseFloat(d["y_l2"])))
+                .attr("cx", (d)=>scaleX(parseFloat(d["x_l2"])))
+                .attr("cy", (d)=>scaleY(parseFloat(d["y_l2"])))
                 .attr("r", 5)
-                .attr("fill", (d)=>colors[d[document.getElementById("cluster-count").value]]);
+                .attr("fill", (d)=>colors[d[document.getElementById("cluster-count").value]])
+                .attr("class", "data")
 
             document.getElementById("distance-metric")
                 .addEventListener("click", function(e){
+                    // svg_mds.selectAll("text.data").exit().delete();
                     if (e.srcElement.value == "l2") {
-                        d3.select(`.${chartname}`).selectAll("circle")
-                            .transition()
-                            .duration(1200)
-                            .attr("cx", (d)=>axisMargin + scaleX(parseFloat(d["x_l2"])))
-                            .attr("cy", (d)=>axisMargin + scaleY(parseFloat(d["y_l2"])));
+                        scaleX = d3.scaleLinear().domain([minX, maxX]).range([legendWidth + axisMargin, matrixWidth - axisMargin])
+                        scaleY = d3.scaleLinear().domain([minY, maxY]).range([matrixHeight - axisMargin, axisMargin])
+                        svg_mds.selectAll("circle")
+                            .data(data).join("circle")
+                            .transition().duration(1200)
+                            .attr("cx", (d)=>scaleX(parseFloat(d["x_l2"])))
+                            .attr("cy", (d)=>scaleY(parseFloat(d["y_l2"])))
+                            .attr("r", 5)
+                            .attr("fill", (d)=>colors[d[document.getElementById("cluster-count").value]])
+                            .attr("class", "data")
+                    } else if (e.srcElement.value == "l1") {
+                        scaleX = d3.scaleLinear().domain([minX, maxX]).range([legendWidth + axisMargin, matrixWidth - axisMargin])
+                        scaleY = d3.scaleLinear().domain([minY, maxY]).range([matrixHeight - axisMargin, axisMargin])
+                        svg_mds.selectAll("circle")
+                            .data(data).join("circle")
+                            .transition().duration(1200)
+                            .attr("cx", (d)=>scaleX(parseFloat(d["x_l1"])))
+                            .attr("cy", (d)=>scaleY(parseFloat(d["y_l1"])))
+                            .attr("r", 5)
+                            .attr("fill", (d)=>colors[d[document.getElementById("cluster-count").value]])
+                            .attr("class", "data");
                     } else {
-                        d3.select(`.${chartname}`).selectAll("circle")
-                            .transition()
-                            .duration(1200)
-                            .attr("cx", (d)=>axisMargin + scaleX(parseFloat(d["x_l1"])))
-                            .attr("cy", (d)=>axisMargin + scaleY(parseFloat(d["y_l1"])));
+                        scaleX = d3.scaleLinear().domain([0, 1.0]).range([legendWidth + axisMargin, matrixWidth - axisMargin])
+                        scaleY = d3.scaleLinear().domain([0, 1.0]).range([matrixHeight - axisMargin, axisMargin])
+                        var attr_labels = svg_mds.selectAll("text.data")
+                            .data(key_pts).enter().append("text")
+                            .attr("fill", "black")
+                            .attr("x", (d)=>scaleX(parseFloat(d["x"])))
+                            .attr("y", (d)=> -15 + scaleY(parseFloat(d["y"])))
+                            .attr("class", "data")
+                            .attr("display", "none")
+                            .text((d)=>d["labels"]);
+                        let attr_circles = svg_mds.selectAll("circle")
+                            .data(key_pts).join("circle")
+                            .transition().duration(1200)
+                            .attr("fill", "black")
+                            .attr("cx", (d)=>scaleX(parseFloat(d["x"])))
+                            .attr("cy", (d)=>scaleY(parseFloat(d["y"])))
+                        svg_mds.selectAll("circle").on("click", function(e,d){
+                            if (selectionOrder.indexOf(d) == -1) {
+                                selectionOrder.push(d);
+                                let li = document.createElement("li");
+                                li.innerText = d.labels;
+                                document.getElementById("selection-order").appendChild(li);
+                                if (selectionOrder.length == key_pts.length) {
+                                    document.getElementById("pcp-mds-select").style.display = "block";
+                                }
+                            }
+                            d3.select(this).attr("fill", "red");
+                        }).on("mouseover", function(e,d){
+                            attr_labels._groups[0][key_pts.indexOf(d)].style.display = "block";
+                        }).on("mouseout", function(e,d){
+                            attr_labels._groups[0][key_pts.indexOf(d)].style.display = "none";
+                        });
                     }
+                    axisX.scale(scaleX)
+                    axisY.scale(scaleY)
+                    svg_mds.selectAll("g.x-axis").call(axisX);
+                    svg_mds.selectAll("g.y-axis").call(axisY);
                 });
         }
 
         function generateBiplot(data, vectors, chartname, title, x_axis, y_axis, showVectors) {
 
-            if (views.indexOf(`.${chartname}`) >= 0) {
-                // let svg_biplot = d3.select(`.${chartname}`);
-                var axisMargin = 120;
-                // let minX = data.reduce((prev, cur)=> cosine(cur, vectors[0]) < prev ? cosine(cur, vectors[0]) : prev, 0)
-                // let maxX = data.reduce((prev, cur)=> cosine(cur, vectors[0]) > prev ? cosine(cur, vectors[0]) : prev, 0)
-                // let minY = data.reduce((prev, cur)=> cosine(cur, vectors[1]) < prev ? cosine(cur, vectors[1]) : prev, 0)
-                // let maxY = data.reduce((prev, cur)=> cosine(cur, vectors[1]) > prev ? cosine(cur, vectors[1]) : prev, 0)
-
-                // let v0 = [], v1 = [];
-                // for (var i in vectors[0]) {
-                //     v0.push(vectors[0][i]);
-                // }
-                // for (var i in vectors[1]) {
-                //     v1.push(vectors[1][i]);
-                // }
-                // for (var i=0; i<vectors.length && showVectors; i++) {
-                //     let dim = Array(vectors.length).fill(0);
-                //     dim[i] = 1;
-                //     if (cosine(v0, dim) < minX) {
-                //         minX = cosine(v0, dim);
-                //     } else if (cosine(v0, dim) > maxX) {
-                //         maxX = cosine(v0, dim);
-                //     }
-                //     if (cosine(v1, dim) < minY) {
-                //         minY = cosine(v1, dim);
-                //     } else if (cosine(v1, dim) > maxY) {
-                //         maxY = cosine(v1, dim);
-                //     }
-                // }
-
-                // let scaleX = d3.scaleLinear().domain([minX, maxX]).range([0, matrixWidth - 2 * axisMargin])
-                // let scaleY = d3.scaleLinear().domain([minY, maxY]).range([matrixHeight - 2 * axisMargin, 0])
-                
+            if (views.indexOf(`.${chartname}`) >= 0) {                
                 d3.select(`.${chartname}`).selectAll("circle")
                     .transition()
                     .duration(1200)
@@ -530,7 +572,6 @@
             views.push("." + chartname);
             cur_view = `.${chartname}`
 
-            var axisMargin = 120;
             let minX = data.reduce((prev, cur)=> cosine(cur, vectors[0]) < prev ? cosine(cur, vectors[0]) : prev, 0)
             let maxX = data.reduce((prev, cur)=> cosine(cur, vectors[0]) > prev ? cosine(cur, vectors[0]) : prev, 0)
             let minY = data.reduce((prev, cur)=> cosine(cur, vectors[1]) < prev ? cosine(cur, vectors[1]) : prev, 0)
@@ -543,6 +584,7 @@
             for (var i in vectors[1]) {
                 v1.push(vectors[1][i]);
             }
+            console.log(vectors[0]);
             for (var i=0; i<vectors.length && showVectors; i++) {
                 let dim = Array(vectors.length).fill(0);
                 dim[i] = 1;
@@ -558,30 +600,30 @@
                 }
             }
 
-            scaleX = d3.scaleLinear().domain([minX, maxX]).range([legendWidth, matrixWidth - 2 * axisMargin - legendWidth])
-            mds_scale = scaleX;
+            scaleX = d3.scaleLinear().domain([minX, maxX]).range([legendWidth + axisMargin, matrixWidth - axisMargin])
             scaleY = d3.scaleLinear().domain([minY, maxY]).range([matrixHeight - 2 * axisMargin, 0])
             let axisX = d3.axisBottom().scale(scaleX);
             let axisY = d3.axisLeft().scale(scaleY);
             for (var i=0; i<vectors.length && showVectors; i++) {
                 let dim = Array(vectors.length).fill(0);
                 dim[i] = 1;
-                svg_biplot.append("path")
-                  .attr("d", `M ${axisMargin + scaleX(0)} ${axisMargin + scaleY(0)} L ${axisMargin + scaleX(cosine(v0, dim))} ${axisMargin + scaleY(cosine(v1, dim))}`)
+                let tmp = svg_biplot.append("path")
+                  .attr("d", `M ${scaleX(0)} ${axisMargin + scaleY(0)} L ${scaleX(cosine(v0, dim))} ${axisMargin + scaleY(cosine(v1, dim))}`)
                   .attr("stroke", "black")
                   .attr("stroke-width", 2)
                   .attr("fill-opacity", 0)
+                console.log(tmp);
             }
 
             svg_biplot.append("g")
-                .attr("transform", `translate(${axisMargin},${scaleY(minY) + axisMargin})`)
+                .attr("transform", `translate(${0},${scaleY(minY) + axisMargin})`)
                 .call(axisX);
             svg_biplot.append("g")
                 .attr("transform", `translate(${axisMargin + legendWidth}, ${axisMargin})`)
                 .attr("class", "y-axis")
                 .call(axisY);
             svg_biplot.append("text")
-                .attr("x", matrixWidth / 2)
+                .attr("x", matrixWidth / 2 + axisMargin)
                 .attr("y", axisMargin / 2)
                 .attr("text-anchor", "middle")
                 .text(title)
@@ -599,22 +641,22 @@
 
             let circles = svg_biplot.selectAll("circle").data(data)
                 .enter().append("circle")
-                .attr("cx", (d)=>axisMargin + scaleX(cosine(d, vectors[0])))
+                .attr("cx", (d)=>scaleX(cosine(d, vectors[0])))
                 .attr("cy", (d)=>axisMargin + scaleY(cosine(d, vectors[1])))
                 .attr("r", 5)
                 .attr("fill", (d)=>colors[d[document.getElementById("cluster-count").value]]);
         }
 
-        function generateParallelCoordinates(data) {
+        function generateParallelCoordinates(data, attributes) {
             let svg_parallel = svg.append("g").attr("class", "svg-parallel");
             views.push(".svg-parallel");
             cur_view = ".svg-parallel";
 
-            let axisMargin = 120;
-            var attributes = Object.keys(data[0]).filter((key)=>isNaN(key));
             let attribute_x = [];
             let attribute_range = [];
             let attribute_scales = [];
+            let attribute_axes = [];
+            let attribute_filters = [];
             for (var i=0; i < attributes.length; i++) {
                 let attr = attributes[i];
                 attribute_range.push([parseNum(data[0][attr]), parseNum(data[0][attr])]);
@@ -626,9 +668,9 @@
                 attribute_scales.push(
                     d3.scaleLinear()
                         .domain(attribute_range[attribute_range.length - 1])
-                        .range([matrixHeight - axisMargin, axisMargin])
+                        .range([axisMargin, matrixHeight - axisMargin])
                 );
-                attribute_x.push(legendWidth + axisMargin + i * (matrixWidth - 2 * axisMargin - legendWidth) / (attributes.length - 1));
+                attribute_x.push(legendWidth + i * (matrixWidth - 1 * axisMargin - legendWidth) / (attributes.length - 1));
             }
 
             var paths = [];
@@ -649,28 +691,59 @@
                     .attr("fill-opacity", 0));
             }
 
-            let vline = svg_parallel.selectAll("line")
-                .data(attribute_x)
-                .enter().append("line")
-                .attr("x1", (d)=>d).attr("x2", (d)=>d)
-                .attr("y1", (d)=>axisMargin).attr("y2", (d)=>matrixHeight - axisMargin)
-                .attr("stroke", "black").attr("stroke-width", 2)
-            svg_parallel.selectAll("text.min-y")
-                .data(attribute_x)
-                .enter().append("text")
-                .attr("x", (d)=>d)
-                .attr("y", axisMargin)
-                .attr("class", "axis-val")
-                .attr("class", "min-y")
-                .text((d, i)=>attribute_range[i][0])
-            svg_parallel.selectAll("text.max-y")
-                .data(attribute_x)
-                .enter().append("text")
-                .attr("x", (d)=>d)
-                .attr("y", matrixHeight - axisMargin)
-                .attr("class", "axis-val")
-                .attr("class", "max-y")
-                .text((d, i)=>attribute_range[i][1])
+            var mouseDownFilter = null,
+                mouseUpFilter = null;
+
+            function refreshPathFilters(){
+                paths.forEach(function(path){
+                    path.attr("opacity", 1.00);
+                    attribute_filters.forEach(function(filter, i){
+                        if (filter != null && 
+                                (parseFloat(path._groups[0][0].__data__[attributes[i]]) < filter[0] ||
+                                parseFloat(path._groups[0][0].__data__[attributes[i]]) > filter[1])) {
+                            path.attr("opacity", 0.01);
+                        }
+                    });
+                });
+            }
+
+            let attribute_filter_rects = {}
+            attribute_scales.forEach(function(scale, i) {
+                let axis = d3.axisRight(scale);
+                attribute_axes.push(svg_parallel.append("g")
+                    .attr("class", "parallel-axes")
+                    .attr("transform", `translate(${attribute_x[i]},${0})`)
+                    .attr("cursor", "pointer")
+                    .call(axis));
+                attribute_filters.push(null);
+
+                d3.drag().on("start", function(event, d) {
+                        mouseDownFilter = event.y;
+                    })
+                    .on("end", function(event, d) {
+                        mouseUpFilter = event.y
+                        let attribute = attributes[i];
+                        if (attribute_filters[i] == null) {
+                            let filter_rect = svg_parallel.append("rect")
+                                .attr("x", attribute_x[i] - 10)
+                                .attr("y", Math.min(mouseUpFilter, mouseDownFilter))
+                                .attr("height", Math.abs(mouseDownFilter - mouseUpFilter))
+                                .attr("width", 20)
+                                .attr("fill", `rgba(200,200,200,0.5)`)
+                                .attr("class", "parallel-filter")
+                                .on("click", function(d){
+                                    attribute_filters[attributes.indexOf(attribute)] = null;
+                                    d3.select(this).remove();
+                                    refreshPathFilters();
+                            });
+
+                            let upperBound = attribute_scales[i].invert(Math.max(mouseUpFilter, mouseDownFilter));
+                            let lowerBound = attribute_scales[i].invert(Math.min(mouseUpFilter, mouseDownFilter));
+                            attribute_filters[i] = [lowerBound, upperBound, filter_rect];
+                            refreshPathFilters();
+                        }
+                    })(attribute_axes[attribute_axes.length - 1]);
+            });
                 
             svg_parallel.selectAll("text.axis-label")
                 .data(attribute_x)
@@ -691,11 +764,11 @@
             }
 
             svg_parallel.append("text")
-                .attr("x", matrixWidth / 2)
+                .attr("x", matrixWidth / 2 + axisMargin)
                 .attr("y", axisMargin / 2)
                 .attr("text-anchor", "middle")
-                .text("Parallel Coordinate")
-            console.log(attribute_range);
+                .text("Parallel Coordinate Plot");
+
             svg_parallel.selectAll("polyline")
                 .data(attribute_x.slice(0,-1))
                 .enter().append("polyline")
@@ -708,24 +781,40 @@
                     let tmp_scale = attribute_scales[ind];
                     attribute_scales[ind] = attribute_scales[ind + 1];
                     attribute_scales[ind + 1] = tmp_scale;
-
-                    console.log(attribute_range);
                     let tmp_range = attribute_range[ind];
                     attribute_range[ind] = attribute_range[ind + 1];
                     attribute_range[ind + 1] = tmp_range;
+                    let tmp_filter = attribute_filters[ind];
+                    attribute_filters[ind] = attribute_filters[ind + 1];
+                    attribute_filters[ind + 1] = tmp_filter;
                     
-                    
+                    // let tmp_filter_rect = attribute_filter_rects[ind];
+                    // attribute_filter_rects[ind] = attribute_filter_rects[ind + 1];
+                    // attribute_filter_rects[ind + 1] = tmp_filter_rect;
+
+                    if (attribute_filters[ind] && attribute_filters[ind][2]) {
+                        attribute_filters[ind][2].attr("x", attribute_x[ind]);
+                    }
+                    if (attribute_filters[ind+1] && attribute_filters[ind+1][2]) {
+                        attribute_filters[ind+1][2].attr("x", attribute_x[ind+1]);
+                    }
+                    // d3.selectAll(".parallel-filter").remove();
+                    // for (var i=0; i < attribute_filters.length; i++) {
+                    //     attribute_filters[i] = null;
+                    // }
+                    // refreshPathFilters();
+
                     for (svg_path of paths) {
                         svg_path.attr("d", function(d) {
                             let path = attributes
                                 .map((attr, ind)=>([attribute_x[ind], attribute_scales[ind](d[attr])]));
                             return d3.line().x((p)=>p[0]).y((p)=>p[1])(path);
                         });
-
                     }
+                    attribute_axes.forEach((axisG, i)=>axisG.call(d3.axisRight(attribute_scales[i])));
+
                     svg_parallel.selectAll("text.axis-label")   
                         .text((d, i)=>attributes[i]);
-                    console.log(attribute_range);
                     svg.selectAll("text.min-y").text((d, i)=>attribute_range[i][0]);
                     svg.selectAll("text.max-y").text((d, i)=>attribute_range[i][1]);
                 });
@@ -749,7 +838,7 @@
         op2.addEventListener("click", function(){
             if (views.indexOf(".svg-biplot") == -1) {
                 Promise.all([d3.csv("public/spotify_numeric_norm.csv"), d3.csv("public/pca_values.csv")]).then(function(data){
-                    generateBiplot(data[0], data[1], "svg-biplot", "Two Most Influential PCA Dimensions", "PCA1", "PCA2");
+                    generateBiplot(data[0], data[1], "svg-biplot", "Two Most Influential PCA Dimensions", "PCA1", "PCA2", true);
                     d3.select(".svg-biplot").attr("opacity", 0).attr("visibility", "hidden");
                     toggleView(".svg-biplot");
                 });
@@ -761,23 +850,23 @@
         let op3 = option(document.getElementById("category-selector"), "MDS");
         op3.addEventListener("click", function(){
             if (views.indexOf(".svg-mds") == -1) {
-                d3.csv("public/mds.csv").then(function(data){
-                    generateMDS(data, [{'x_l2': 0, 'y_l2': 1}, {'x_l2': 1, 'y_l2': 0}], "svg-mds", "Multidimensional Scaling", "x", "y");
+                Promise.all([d3.csv("public/mds.csv"), d3.csv("public/correlation_mds.csv")]).then(function(data){
+                    generateMDS(data[0], data[1], [{'x_l2': 0, 'y_l2': 1}, {'x_l2': 1, 'y_l2': 0}], "svg-mds", "Multidimensional Scaling", "x", "y");
                     d3.select(".svg-mds").attr("opacity", 0).attr("visibility", "hidden");
                     toggleView(".svg-mds");
-                    document.getElementsByClassName("show-parallel")[0].style.visibility = "visible";
+                    document.getElementsByClassName("show-parallel")[0].style.display = "block";
                 });
             } else {
-                generateBiplot(null, [{'x_l2': 0, 'y_l2': 1}, {'x_l2': 1, 'y_l2': 0}], "svg-mds", "Multidimensional Scaling", "x", "y");
+                generateMDS(null, null, [{'x_l2': 0, 'y_l2': 1}, {'x_l2': 1, 'y_l2': 0}], "svg-mds", "Multidimensional Scaling", "x", "y");
                 toggleView(".svg-mds");
-                document.getElementsByClassName("show-parallel")[0].style.visibility = "visible";
+                document.getElementsByClassName("show-parallel")[0].style.display = "block";
             }
         });
         let op4 = option(document.getElementById("category-selector"), "Parallel");
         op4.addEventListener("click", function(){
             if (views.indexOf(".svg-parallel") == -1) {
                 d3.csv("public/spotify_numeric_norm.csv").then(function(data){
-                    generateParallelCoordinates(data.slice());
+                    generateParallelCoordinates(data.slice(), Object.keys(data[0]).filter((key)=>isNaN(key)));
                     d3.select(".svg-parallel").attr("opacity", 0).attr("visibility", "hidden");
                     toggleView(".svg-parallel");
                 });
@@ -799,7 +888,23 @@
                 .selectAll("path")
                 .attr("stroke", (d)=>colors[d[e.srcElement.value]]);
         });
-
+        document.getElementById("clear-mds-select").addEventListener("click", function(e) {
+            document.getElementById("selection-order").innerHTML = "";
+            document.getElementById("pcp-mds-select").style.display = "none";
+            selectionOrder = [];
+            d3.select(".svg-mds").selectAll("circle").attr("fill", "black");
+        });
+        document.getElementById("pcp-mds-select").addEventListener("click", function(e) {   
+            if (views.indexOf(".svg-parallel") == -1) {
+                d3.csv("public/spotify_numeric_norm.csv").then(function(data){
+                    generateParallelCoordinates(data.slice(), selectionOrder.map((x)=>x["labels"]));
+                    d3.select(".svg-parallel").attr("opacity", 0).attr("visibility", "hidden");
+                    toggleView(".svg-parallel");
+                });
+            } else {
+                toggleView(".svg-parallel");
+            }
+        });
         d3.selectAll(".to-scree").on("click", function(){
             if (d3.select(".svg-scree")) {
                 toggleView(".svg-scree");
