@@ -23,6 +23,9 @@ body {font-size:16px;}
 .course-graduate{font-weight: bold}
 ::-webkit-scrollbar {width:1em;}
 ::-webkit-scrollbar-thumb {background: #607d8b;}
+
+.w3-quarter p, a { margin-block-start: 0.5em; margin-block-end: 0.5em; }
+.w3-quarter img { display: block; margin-left: auto; margin-right: auto; }
 </style>
 </head>
 <body>
@@ -266,7 +269,6 @@ body {font-size:16px;}
       <a class="w3-button w3-theme">Node.js</a>
       <a class="w3-button w3-theme">Tensorflow</a>
       <a class="w3-button w3-theme">OCaml</a>
-      <a class="w3-button w3-theme">React.js</a>
     </div>
     <h3>Coursework: </h3>
     <h5><em>Emphasis</em> indicates ongoing. <b>Bold</b> indicates graduate courses. <span class="w3-red">Red</span> indicates fields of research.</h5>
@@ -274,7 +276,7 @@ body {font-size:16px;}
       <br>
       <a class="w3-button w3-theme course-ongoing course-graduate">Visualization</a>
       <a class="w3-button w3-theme course-ongoing course-graduate">Network Security</a>
-      <a class="w3-button w3-theme course-ongoing course-graduate">Computer Vision</a>
+      <a class="w3-button w3-theme course-ongoing course-graduate">Operating Systems</a>
       <a class="w3-button w3-theme course-graduate">Analysis of Algorithms</a>
       <a class="w3-button w3-theme course-graduate">Computer Networks</a>
       <a class="w3-button w3-theme course-graduate">Distributed Systems</a>
@@ -304,17 +306,6 @@ body {font-size:16px;}
         </div>
       </div>
       <div class="w3-light-grey">
-        <img src="public/graphit.png" alt="GraphIt" style="width:100%">
-        <div class="w3-container">
-          <h3>GraphIt</h3>
-          <p class="w3-opacity">Java, JavaFX</p>
-          <p>GraphIt is an interactive graphing utility developed in Java. The user can click on the graph and its nodes to add, remove, or move points. There are toggle switches to show the mean, standard deviation, regression line, and other statistical measures about the dataset. There are also options to textually modify the data points so that changes will be reflected in the graph. Batch modifications can be made by applying functions to all the points in the set.
-      </p>
-      <p>The user can also import their own data from a csv file or output the current dataset to a new csv.</p>
-          <a href="https://github.com/ivlin/graphit" class="w3-button w3-half w3-margin-bottom">Source</a>
-        </div>
-      </div>
-      <div class="w3-light-grey">
         <img src="public/framefinder.png" alt="FrameFinder" style="width:100%">
         <div class="w3-container">
           <h3>FrameFinder</h3>
@@ -338,35 +329,62 @@ body {font-size:16px;}
         </div>
       </div>
       <div class="w3-light-grey">
-        <img src="public/mealz.png" alt="Mealz" style="width:100%">
+        <img src="public/spotify.png" alt="Spotify" style="width:100%">
         <div class="w3-container">
-          <h3>Mealz</h3>
-          <p class="w3-opacity">HTML, CSS, Javascript, Python Flask</p>
-          <p>This website is aimed to give friends a way to track how they are splitting bills. Rather than constantly having money trade hands, many small transactions can be tracked and split between participants.</p>
-          <a href="https://github.com/ivlin/mealztm" class="w3-button w3-half w3-margin-bottom">Source</a>
-          <a href="https://mealz-tm.herokuapp.com" class="w3-button w3-half w3-margin-bottom">Demo</a>
+          <h3>Spotify Visualization</h3>
+          <p class="w3-opacity">HTML, CSS, Javascript, d3</p>
+          <p>Visualization of Kaggle Spotify song datasets using d3. Includes visualizations of raw data as scatter, bar, and parallel coordinate plots, as well as MDS and PCA decomposition.</p>
+          <a href="https://github.com/ivlin/cse564_visualization" class="w3-button w3-half w3-margin-bottom">Source</a>
+          <a href="https://ivlin.github.io/spotify_data.html" class="w3-button w3-half w3-margin-bottom">Demo</a>
         </div>
       </div>
-      <div class="w3-light-grey">
-        <div class="w3-container">
-          <h3>FDNS (Fork)</h3>
-          <p class="w3-opacity">C</p>
-          <p>The original fdns project is an open-source dns stub resolver. This fork significantly alters some of the structures of the original fdns code. This fork significantly alters some of the structures of the original fdns code. It implements the k-resolver strategy described in the following paper:
-<a href="https://arxiv.org/abs/2001.08901"> K-resolver: Towards Decentralizing Encrypted DNS Resolution</a>. It divides DNS lookup load across multiple possible resolvers. The resolver list is not kept up-to-date - when it contacts a nonfunctional resolver, it will fallback to standard DNS.</p>
-          <a href="https://github.com/ivlin/fdns" class="w3-button w3-half w3-margin-bottom">Source</a>
-        </div>
-      </div>
+  	</div>
   </div>
-
-
-<!-- End page content -->
-</div>
+  
+  <!-- Projects Minor -->
+  <div class="w3-container">
+  <div class="w3-row-padding">
+    <div class="w3-quarter w3-container w3-margin-bottom">
+      <img src="public/mealz.png" alt="Mealz" style="width:100%">
+      <div class="w3-container w3-light-grey">
+        <h4>Mealz</h4>
+        <p class="w3-opacity">HTML, CSS, Javascript, Python Flask</p>
+        <p>This website is aimed to give friends a way to track how they are splitting bills. Rather than constantly having money trade hands, many small transactions can be tracked and split between participants.</p>
+        <a href="https://github.com/ivlin/mealztm" class="w3-button w3-half w3-margin-bottom">Source</a>
+        <a href="https://mealz-tm.herokuapp.com" class="w3-button w3-half w3-margin-bottom">Demo</a>
+      </div>
+    </div>
+    <div class="w3-quarter w3-container w3-margin-bottom">
+      <img src="public/graphit.png" alt="GraphIt" style="width:100%">
+      <div class="w3-container w3-light-grey">
+        <h4>GraphIt</h4>
+        <p class="w3-opacity">Java, JavaFX</p>
+        <p>GraphIt is an interactive graphing utility. The user can click on the graph and its nodes to add, remove, or move points. Switches allow the user to toggle the mean, standard deviation, regression line, and other statistical measures about the dataset. There are also options to batch modify the data.</p>
+        <a href="https://github.com/ivlin/graphit" class="w3-button w3-half w3-margin-bottom">Source</a>
+      </div>
+    </div>
+    <div class="w3-quarter w3-container">
+      <img src="public/fdns.png" alt="FDNS" style="width:100%">
+      <div class="w3-container w3-light-grey">
+        <h4>FDNS (Fork)</h4>
+        <p class="w3-opacity">C</p>
+        <p>Fork of dns stub resolver. Implements the k-resolver strategy described in the following paper:
+<a href="https://arxiv.org/abs/2001.08901"> K-resolver: Towards Decentralizing Encrypted DNS Resolution</a>. Divides DNS lookup load across multiple possible resolvers.</p>
+        <a href="https://github.com/ivlin/fdns" class="w3-button w3-half w3-margin-bottom">Source</a>
+      </div>
+    </div>
+    <div class="w3-quarter w3-container">
+      <img src="public/gitcc.png" alt="C&C" style="width:80%; height:auto; margin-left: auto; margin-right: auto;">
+      <div class="w3-container w3-light-grey">
+        <h4>Git-based C&C</h4>
+        <p class="w3-opacity">Python, Bash</p>
+        <p>Covert command-and-control software meant to allow infected machines to communicate with an external server. Communication and exfiltration of data using a set of scripts that export using preset git repositories.</p>
+        <a href="https://github.com/ivlin/Command-and-Control" class="w3-button w3-half w3-margin-bottom">Source</a>
+      </div>
+    </div>
+  </div>
+  </div>
 <script>
-modal_data = {
-  {
-    'test': 1
-  },
-};
 
 // Script to open and close sidebar
 function w3_open() {
