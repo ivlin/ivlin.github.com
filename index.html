@@ -8,25 +8,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
-body {font-size:16px;}
-.w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
-.w3-half img:hover{opacity:1}
-
-.sidebar-with-icon{font-size:2rem; line-height:0.8; width:100%; text-align:right; display:block;}
-.sidebar-with-icon i{line-height: 0;}
-
-#projects .w3-container{margin:1rem;}
-.w3-round {background-color: black;}
-.course-ongoing{font-style: italic}
-.course-graduate{font-weight: bold}
-::-webkit-scrollbar {width:1em;}
-::-webkit-scrollbar-thumb {background: #607d8b;}
-
-.w3-quarter p, a { margin-block-start: 0.5em; margin-block-end: 0.5em; }
-.w3-quarter img { display: block; margin-left: auto; margin-right: auto; }
-</style>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -292,25 +274,41 @@ body {font-size:16px;}
 
   <!-- Projects -->
   <div class="w3-container" id="projects" style="margin-top:75px">
-    <h1 class="w3-xxxlarge w3-text"><b>Projects.</b></h1>
+    <h1 class="w3-xxxlarge w3-text"><b>Projects.</b>
+    </h1>
     <hr style="width:50px;border:5px solid black" class="w3-round">
-  	
+  	<div>
+      <h3 style="text-align: right;"> 
+        <i id="toggle-caption" class="fa fa-th-large" onclick="showCaption();"></i> 
+        <i id="toggle-description" class="fa fa-window-maximize" onclick="showDescription();"></i> 
+      </h1>
+    </div>
   	<div class="w3-col m6 w3-row-padding">
   	  <div class="w3-light-grey">
-        <img src="public/directwriter.png" alt="DirectWriter" style="width:100%">
+        <div class="img-card">
+          <div class="img-card-caption">
+            <p>This project writes out the structure of a directory as text in your terminal. You can then edit the text in-terminal and any changes made through the editor will be applied to the actual file names, so all renaming can be done in one place.</p>
+          </div>
+          <img src="public/directwriter.png" alt="DirectWriter">
+        </div>
         <div class="w3-container">
           <h3>DirectWriter</h3>
           <p class="w3-opacity">C</p>
-          <p>This project writes out the structure of a directory as text in your terminal. You can then edit the text in-terminal and any changes made through the editor will be applied to the actual file names, so all renaming can be done in one place.</p>
+          <p class="img-card-description">This project writes out the structure of a directory as text in your terminal. You can then edit the text in-terminal and any changes made through the editor will be applied to the actual file names, so all renaming can be done in one place.</p>
           <a href="https://github.com/ivlin/directwriter" class="w3-button w3-half w3-margin-bottom">Source</a>
         </div>
       </div>
       <div class="w3-light-grey">
-        <img src="public/framefinder.png" alt="FrameFinder" style="width:100%">
+        <div class="img-card">
+          <div class="img-card-caption">
+            <p>FrameFinder is meant to automatically look through videos for a specific moment. If you have hours of uncut video and you are trying to recall a specific moment, draw it out as best you can and use FrameFinder to look for you while you do something else.</p>
+          </div>
+          <img src="public/framefinder.png" alt="FrameFinder">
+        </div>
         <div class="w3-container">
           <h3>FrameFinder</h3>
           <p class="w3-opacity">HTML, CSS, Javascript, Python Flask</p>
-          <p>FrameFinder is meant to automatically look through videos for a specific moment. If you have hours of uncut video and you are trying to recall a specific moment, draw it out as best you can and use FrameFinder to look for you while you do something else.</p>
+          <p class="img-card-description">FrameFinder is meant to automatically look through videos for a specific moment. If you have hours of uncut video and you are trying to recall a specific moment, draw it out as best you can and use FrameFinder to look for you while you do something else.</p>
           <a href="https://github.com/ivlin/framefinder" class="w3-button w3-half w3-margin-bottom">Source</a>
           <a href="https://framefinder.herokuapp.com" class="w3-button w3-half w3-margin-bottom">Demo</a>
         </div>
@@ -319,21 +317,31 @@ body {font-size:16px;}
 
   	<div class="w3-col m6">
       <div class="w3-light-grey">
-        <img src="public/langannotator.png" alt="LangAnnotator" style="width:100%">
+        <div class="img-card">
+          <div class="img-card-caption">
+            <p>Tool for writing and annotating notes, aimed at those learning a foreign language.</p>
+          </div>
+          <img src="public/langannotator.png" alt="LangAnnotator">
+        </div>
         <div class="w3-container">
           <h3>LangAnnotator</h3>
           <p class="w3-opacity">HTML, CSS, React.js</p>
-          <p>Tool for writing and annotating notes, aimed at those learning a foreign language.</p>
+          <p class="img-card-description">Tool for writing and annotating notes, aimed at those learning a foreign language.</p>
           <a href="https://github.com/ivlin/LangAnnotator" class="w3-button w3-half w3-margin-bottom">Source</a>
           <a href="https://ivlin.github.io/LangAnnotator" class="w3-button w3-half w3-margin-bottom">Demo</a>
         </div>
       </div>
       <div class="w3-light-grey">
-        <img src="public/spotify.png" alt="Spotify" style="width:100%">
+        <div class="img-card">
+          <div class="img-card-caption">
+            <p>Visualization of Kaggle Spotify song datasets using d3. Includes visualizations of raw data as scatter, bar, and parallel coordinate plots, as well as MDS and PCA decomposition.</p>
+          </div>
+          <img src="public/spotify.png" alt="Spotify">
+        </div>
         <div class="w3-container">
           <h3>Spotify Visualization</h3>
           <p class="w3-opacity">HTML, CSS, Javascript, d3</p>
-          <p>Visualization of Kaggle Spotify song datasets using d3. Includes visualizations of raw data as scatter, bar, and parallel coordinate plots, as well as MDS and PCA decomposition.</p>
+          <p class="img-card-description">Visualization of Kaggle Spotify song datasets using d3. Includes visualizations of raw data as scatter, bar, and parallel coordinate plots, as well as MDS and PCA decomposition.</p>
           <a href="https://github.com/ivlin/cse564_visualization" class="w3-button w3-half w3-margin-bottom">Source</a>
           <a href="https://ivlin.github.io/spotify_data.html" class="w3-button w3-half w3-margin-bottom">Demo</a>
         </div>
@@ -403,6 +411,17 @@ function onClick(element) {
   document.getElementById("modal01").style.display = "block";
   var captionText = document.getElementById("caption");
   captionText.innerHTML = element.alt;
+}
+
+//
+function showCaption() {
+  document.querySelectorAll(".img-card-description").forEach(d=>d.style.display="none");
+  document.querySelectorAll(".img-card-caption").forEach(d=>d.style.display="block");
+}
+function showDescription() {
+  document.getElementById("toggle-description").active = true;
+  document.querySelectorAll(".img-card-description").forEach(d=>d.style.display="block");
+  document.querySelectorAll(".img-card-caption").forEach(d=>d.style.display="none");
 }
 </script>
 

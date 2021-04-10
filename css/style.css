@@ -1,0 +1,40 @@
+body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+body {font-size:16px;}
+.w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
+.w3-half img:hover{opacity:1}
+
+.sidebar-with-icon{font-size:2rem; line-height:0.8; width:100%; text-align:right; display:block;}
+.sidebar-with-icon i{line-height: 0;}
+
+#projects .w3-container{margin:1rem;}
+.w3-round {background-color: black;}
+.course-ongoing{font-style: italic}
+.course-graduate{font-weight: bold}
+::-webkit-scrollbar {width:1em;}
+::-webkit-scrollbar-thumb {background: #607d8b;}
+
+.w3-quarter p, a { margin-block-start: 0.5em; margin-block-end: 0.5em; }
+.w3-quarter img { display: block; margin-left: auto; margin-right: auto; }
+
+
+.img-card {
+    position: relative;
+}
+.img-card img {
+	height: 40vh; width: auto; max-width: 100%;
+}
+.img-card-caption {
+	background: #000;
+    opacity: 0.7;
+    width: 100%;
+    box-sizing: border-box;
+    color: #fff;
+    transition: height 1s ease;
+    position: absolute;
+    padding: 2.5% 5%;
+    bottom: 0;
+    height: 0;
+    overflow: hidden;
+    display: none;
+}
+.img-card:hover .img-card-caption { padding: 2.5% 5%; height: 100%; }
