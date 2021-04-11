@@ -16,7 +16,15 @@ body {font-size:16px;}
 .w3-quarter p, a { margin-block-start: 0.5em; margin-block-end: 0.5em; }
 .w3-quarter img { display: block; margin-left: auto; margin-right: auto; }
 
-
+.card-view-selector {
+	color:rgba(100,100,100,0.5);
+}
+.card-header {
+	display: flex; flex-direction: row; justify-content: space-between; align-items: flex-end; margin: 10px 0;
+}
+.active-icon {
+	color:rgba(0,0,0,1);
+}
 .img-card {
     position: relative;
 }

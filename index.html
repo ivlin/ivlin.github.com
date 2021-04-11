@@ -278,9 +278,9 @@
     </h1>
     <hr style="width:50px;border:5px solid black" class="w3-round">
   	<div>
-      <h3 style="text-align: right;"> 
+      <h3 style="text-align: right;" class="card-view-selector"> 
         <i id="toggle-caption" class="fa fa-th-large" onclick="showCaption();"></i> 
-        <i id="toggle-description" class="fa fa-window-maximize" onclick="showDescription();"></i> 
+        <i id="toggle-description" class="fa fa-window-maximize active-icon" onclick="showDescription();"></i> 
       </h1>
     </div>
   	<div class="w3-col m6 w3-row-padding">
@@ -292,10 +292,12 @@
           <img src="public/directwriter.png" alt="DirectWriter">
         </div>
         <div class="w3-container">
-          <h3>DirectWriter</h3>
-          <p class="w3-opacity">C</p>
+          <div class="card-header">
+            <h3>DirectWriter</h3>
+            <p class="w3-opacity">C</p>
+          </div>
           <p class="img-card-description">This project writes out the structure of a directory as text in your terminal. You can then edit the text in-terminal and any changes made through the editor will be applied to the actual file names, so all renaming can be done in one place.</p>
-          <a href="https://github.com/ivlin/directwriter" class="w3-button w3-half w3-margin-bottom">Source</a>
+          <a href="https://github.com/ivlin/directwriter" class="w3-button w3-half">Source</a>
         </div>
       </div>
       <div class="w3-light-grey">
@@ -306,11 +308,13 @@
           <img src="public/framefinder.png" alt="FrameFinder">
         </div>
         <div class="w3-container">
-          <h3>FrameFinder</h3>
-          <p class="w3-opacity">HTML, CSS, Javascript, Python Flask</p>
+          <div class="card-header">
+            <h3>FrameFinder</h3>
+            <p class="w3-opacity">HTML, CSS, Javascript, Python Flask</p>
+          </div>
           <p class="img-card-description">FrameFinder is meant to automatically look through videos for a specific moment. If you have hours of uncut video and you are trying to recall a specific moment, draw it out as best you can and use FrameFinder to look for you while you do something else.</p>
-          <a href="https://github.com/ivlin/framefinder" class="w3-button w3-half w3-margin-bottom">Source</a>
-          <a href="https://framefinder.herokuapp.com" class="w3-button w3-half w3-margin-bottom">Demo</a>
+          <a href="https://github.com/ivlin/framefinder" class="w3-button w3-half">Source</a>
+          <a href="https://framefinder.herokuapp.com" class="w3-button w3-half">Demo</a>
         </div>
       </div>
   	</div>
@@ -324,11 +328,13 @@
           <img src="public/langannotator.png" alt="LangAnnotator">
         </div>
         <div class="w3-container">
-          <h3>LangAnnotator</h3>
-          <p class="w3-opacity">HTML, CSS, React.js</p>
+          <div class="card-header">
+            <h3>LangAnnotator</h3>
+            <p class="w3-opacity">HTML, CSS, React.js</p>
+          </div>
           <p class="img-card-description">Tool for writing and annotating notes, aimed at those learning a foreign language.</p>
-          <a href="https://github.com/ivlin/LangAnnotator" class="w3-button w3-half w3-margin-bottom">Source</a>
-          <a href="https://ivlin.github.io/LangAnnotator" class="w3-button w3-half w3-margin-bottom">Demo</a>
+          <a href="https://github.com/ivlin/LangAnnotator" class="w3-button w3-half">Source</a>
+          <a href="https://ivlin.github.io/LangAnnotator" class="w3-button w3-half">Demo</a>
         </div>
       </div>
       <div class="w3-light-grey">
@@ -339,11 +345,13 @@
           <img src="public/spotify.png" alt="Spotify">
         </div>
         <div class="w3-container">
-          <h3>Spotify Visualization</h3>
-          <p class="w3-opacity">HTML, CSS, Javascript, d3</p>
+          <div class="card-header">
+            <h3>Spotify Visualization</h3>
+            <p class="w3-opacity">HTML, CSS, Javascript, d3</p>
+          </div>
           <p class="img-card-description">Visualization of Kaggle Spotify song datasets using d3. Includes visualizations of raw data as scatter, bar, and parallel coordinate plots, as well as MDS and PCA decomposition.</p>
-          <a href="https://github.com/ivlin/cse564_visualization" class="w3-button w3-half w3-margin-bottom">Source</a>
-          <a href="https://ivlin.github.io/spotify_data.html" class="w3-button w3-half w3-margin-bottom">Demo</a>
+          <a href="https://github.com/ivlin/cse564_visualization" class="w3-button w3-half">Source</a>
+          <a href="https://ivlin.github.io/spotify_data.html" class="w3-button w3-half">Demo</a>
         </div>
       </div>
   	</div>
@@ -358,8 +366,8 @@
         <h4>Mealz</h4>
         <p class="w3-opacity">HTML, CSS, Javascript, Python Flask</p>
         <p>This website is aimed to give friends a way to track how they are splitting bills. Rather than constantly having money trade hands, many small transactions can be tracked and split between participants.</p>
-        <a href="https://github.com/ivlin/mealztm" class="w3-button w3-half w3-margin-bottom">Source</a>
-        <a href="https://mealz-tm.herokuapp.com" class="w3-button w3-half w3-margin-bottom">Demo</a>
+        <a href="https://github.com/ivlin/mealztm" class="w3-button w3-half">Source</a>
+        <a href="https://mealz-tm.herokuapp.com" class="w3-button w3-half">Demo</a>
       </div>
     </div>
     <div class="w3-quarter w3-container w3-margin-bottom">
@@ -368,7 +376,7 @@
         <h4>GraphIt</h4>
         <p class="w3-opacity">Java, JavaFX</p>
         <p>GraphIt is an interactive graphing utility. The user can click on the graph and its nodes to add, remove, or move points. Switches allow the user to toggle the mean, standard deviation, regression line, and other statistical measures about the dataset. There are also options to batch modify the data.</p>
-        <a href="https://github.com/ivlin/graphit" class="w3-button w3-half w3-margin-bottom">Source</a>
+        <a href="https://github.com/ivlin/graphit" class="w3-button w3-half">Source</a>
       </div>
     </div>
     <div class="w3-quarter w3-container">
@@ -378,7 +386,7 @@
         <p class="w3-opacity">C</p>
         <p>Fork of dns stub resolver. Implements the k-resolver strategy described in the following paper:
 <a href="https://arxiv.org/abs/2001.08901"> K-resolver: Towards Decentralizing Encrypted DNS Resolution</a>. Divides DNS lookup load across multiple possible resolvers.</p>
-        <a href="https://github.com/ivlin/fdns" class="w3-button w3-half w3-margin-bottom">Source</a>
+        <a href="https://github.com/ivlin/fdns" class="w3-button w3-half">Source</a>
       </div>
     </div>
     <div class="w3-quarter w3-container">
@@ -387,7 +395,7 @@
         <h4>Git-based C&C</h4>
         <p class="w3-opacity">Python, Bash</p>
         <p>Covert command-and-control software meant to allow infected machines to communicate with an external server. Communication and exfiltration of data using a set of scripts that export using preset git repositories.</p>
-        <a href="https://github.com/ivlin/Command-and-Control" class="w3-button w3-half w3-margin-bottom">Source</a>
+        <a href="https://github.com/ivlin/Command-and-Control" class="w3-button w3-half">Source</a>
       </div>
     </div>
   </div>
@@ -423,6 +431,13 @@ function showDescription() {
   document.querySelectorAll(".img-card-description").forEach(d=>d.style.display="block");
   document.querySelectorAll(".img-card-caption").forEach(d=>d.style.display="none");
 }
+
+let cardViewOptions = document.querySelectorAll(".card-view-selector i");
+cardViewOptions.forEach(child=>child.addEventListener("click", function(e){
+  cardViewOptions.forEach(child=>child.classList.remove("active-icon"))
+  e.target.classList.add("active-icon");
+}));
+
 </script>
 
 </body>
