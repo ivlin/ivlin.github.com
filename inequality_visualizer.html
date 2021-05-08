@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script src="https://d3js.org/d3.v6.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        
+        <link id="theme-default" rel="stylesheet" href="css/light.css">
+        <link id="theme-bg" rel="stylesheet" href="css/light.css">
+        
+        <link id="theme-bg" rel="stylesheet" href="css/toggle.css">
+    </head>
+
+    <body>
+        <div class="main">
+            <div class="header">
+                <h1>Inequality Visualizer</h1>
+                <button id="reset-button">Reset Selections</button>
+                <!-- <a href="" target="_blank">Data Source</a> -->
+                <div class="name-checkbox">
+                    <h4>Andy Liang & Ivan Lin</h4>
+                    <input type="checkbox" id="theme-toggle">
+                </div>
+            </div>
+
+            <div class="graphs">
+                <div class="graph-row">
+                    <div class="one-cell">
+                        <h3 class="cell-title">Household Income by Race</h3>
+                        <div id="density-plot" class="graph-cell"></div>
+                    </div>
+                    <div class="one-cell">
+                        <h3 class="cell-title">Household Income vs Median Household Income</h3>
+                        <div id="scatterplot-top-mid" class="graph-cell"></div>
+                    </div>
+                    <div class="one-cell">
+                        <h3 class="cell-title">College Graduation Rate vs Poverty Rate</h3>
+                        <div id="scatterplot-top-right" class="graph-cell"></div>
+                    </div>
+                </div>
+
+                <div class="graph-row">
+                    <div class="two-cell">
+                        <h3 class="cell-title">Parallel Coordinate Plot</h3>
+                        <div id="pcp" class="graph-cell"></div>
+                    </div>
+                    <div class="one-cell">
+                        <h3 class="cell-title">College Graduation Rate vs Fraction Neighborhood Graduates</h3>
+                        <div id="scatterplot-bottom-right" class="graph-cell"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="credits">
+                <a href="https://www.opportunityatlas.org/" target="_blank">Source: Opportunity Atlas</a>
+            </div>
+        </div>
+
+        <script type="module" src = "js/setup.js"></script>
+    </body>
+
+</html>

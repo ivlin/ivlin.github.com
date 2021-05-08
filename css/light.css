@@ -1,0 +1,149 @@
+::selection {
+    color: none;
+    background: none;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    background-color: #D3D3D3;
+    cursor: default;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+a, a:visited {
+    text-decoration: none;
+    color: dodgerblue;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.header {
+    background-color: #3F4045;
+    display: flex;
+    height: 10%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 2% 10px 2%;
+    border-bottom: 1px solid black;
+    color: #E5E4E2;
+}
+
+.graphs {
+    display: flex;
+    flex-direction: column;
+    height: 90%;
+    width: 100%;
+}
+
+.graph-row {
+    display: flex;
+    height: 50%;
+    width: 100%;
+}
+
+.one-cell {
+    padding: 15px;
+    width: 33.33%;
+}
+
+.two-cell {
+    padding: 15px;
+    width: 66.66%;
+}
+
+.cell-title {
+    height: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.graph-cell {
+    height: 90%;
+}
+
+svg {
+    height: 100%; 
+    width: 100%;
+}
+
+.axis-title {
+    cursor: grab;
+}
+
+.density-names:hover {
+    cursor: pointer;
+}
+
+#reset-button {
+    background-color: transparent;
+    border: 1px solid #E5E4E2;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #E5E4E2;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#reset-button:hover {
+    cursor: pointer;
+    transition: 0.5s;
+    background-color: rgba(0,0,0,0.3);
+}
+
+#reset-button:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.credits {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 10px 10px 0;
+}
+
+text {
+    stroke: black;
+    fill: black;
+    stroke-width: 0;
+}
+
+#density-plot * {
+    stroke: black;
+}
+
+.name-checkbox {
+    display: flex;
+    justify-content: flex-between;
+    align-items: center;
+}
+
+.name-checkbox h4 {
+    margin-right: 30px;
+}
+
+.White{ fill: #16C172; stroke: #16C172; }
+
+.Asian{ fill: #C98BB9; stroke: #C98BB9; }
+
+.Hispanic{ fill: #F45B69; stroke: #F45B69; }
+
+.Black{ fill: #3590F3; stroke: #3590F3; }
+
+.NativeAmerican{ fill: #FFA400; stroke: #FFA400; }
